@@ -2,7 +2,8 @@
    Minimal, dependency-free markdown renderer for chat answers.
    All input is HTML-escaped first — the model's output can never
    inject markup. Supports: headings, bold, italic, inline code,
-   [text](url) links, bare https:// autolinks, ul/ol lists.
+   fenced code blocks (```lang), [text](url) links, bare https://
+   autolinks, ul/ol lists.
    ============================================================ */
 (function (exports) {
   "use strict";
@@ -46,6 +47,7 @@
     var html = [];
     var para = [];
     var list = null; // { type: "ul"|"ol", items: [] }
+    var fence = null; // { lang: string, lines: [] }
 
     function flushPara() {
       if (para.length) {
@@ -63,8 +65,30 @@
         list = null;
       }
     }
+    function flushFence() {
+      if (fence) {
+        // Only a plain identifier becomes a class — anything else is dropped,
+        // so the info string can never inject attributes.
+        var cls = /^[A-Za-z0-9_+-]+$/.test(fence.lang)
+          ? ' class="language-' + fence.lang + '"'
+          : "";
+        html.push("<pre><code" + cls + ">" + fence.lines.map(escapeHtml).join("\n") + "</code></pre>");
+        fence = null;
+      }
+    }
 
     String(md).split(/\r?\n/).forEach(function (line) {
+      var f = line.match(/^\s*```\s*(\S*).*$/);
+      if (fence) {
+        if (f) flushFence();
+        else fence.lines.push(line);
+        return;
+      }
+      if (f) {
+        flushPara(); flushList();
+        fence = { lang: f[1], lines: [] };
+        return;
+      }
       var h = line.match(/^(#{1,4})\s+(.*)$/);
       var ul = line.match(/^\s*[-*]\s+(.*)$/);
       var ol = line.match(/^\s*\d+[.)]\s+(.*)$/);
@@ -89,6 +113,7 @@
       }
     });
     flushPara(); flushList();
+    flushFence(); // unclosed fence at end of message still renders as code
     return html.join("");
   }
 
