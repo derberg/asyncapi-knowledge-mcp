@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AsyncAPI Knowledge — ask the docs</title>
+  <meta name="description" content="Ask questions about AsyncAPI — spec, concepts, tooling and docs — and get cited answers from asyncapi.com/docs and the AsyncAPI 3.1.0 JSON Schema." />
+  <link rel="preload" href="fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/work-sans-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header reveal" data-reveal="1">
+    <div class="wrap header-inner">
+      <a class="logo" href="https://asyncapi.com" target="_blank" rel="noopener"
+         aria-label="AsyncAPI (opens asyncapi.com in a new tab)">
+        <img src="asyncapi-logo.svg" alt="AsyncAPI" width="140" height="36" />
+        <span class="logo__suffix">Knowledge</span>
+      </a>
+      <nav class="header-nav">
+        <button class="btn btn--tools" type="button" id="toolsToggle" aria-expanded="false" aria-controls="toolsPanel">
+          <span class="label-full">Use it in your own tools or locally</span><span class="label-short">Tools &amp; local</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <section class="hero reveal" data-reveal="2">
+      <p class="hero__eyebrow">Cited answers · asyncapi.com/docs · JSON Schema 3.1.0</p>
+      <h1 class="hero__title">Ask <span class="hero__gradient">AsyncAPI</span></h1>
+      <p class="hero__lede">
+        Ask questions about the AsyncAPI specification, concepts, and tooling.
+        Get answers grounded in the official docs, with sources you can verify.
+      </p>
+    </section>
+
+    <!-- "Use it in your own tools or locally" collapsible panel -->
+    <section id="toolsPanel" class="tools-panel reveal" data-reveal="2" hidden>
+      <div class="tools-panel__head">
+        <h2 class="tools-panel__title">Use it in your own tools — or run it locally</h2>
+        <p class="tools-panel__sub">The AsyncAPI knowledge base speaks MCP. Wire it into your editor, install the Claude Code plugin, or clone the repo and run this whole chat on your machine.</p>
+      </div>
+      <div class="tools-grid">
+        <div class="snippet">
+          <div class="snippet__bar">
+            <span class="snippet__label">Hosted MCP endpoint — .mcp.json</span>
+            <button class="btn btn--copy" type="button" data-copy="mcpJson">Copy</button>
+          </div>
+          <pre class="snippet__code"><code id="mcpJson">{
+  "mcpServers": {
+    "asyncapi-knowledge": {
+      "type": "http",
+      "url": "https://asyncapi-knowledge-mcp.vercel.app/api/mcp"
+    }
+  }
+}</code></pre>
+        </div>
+        <div class="snippet">
+          <div class="snippet__bar">
+            <span class="snippet__label">Run locally via PyPI</span>
+            <button class="btn btn--copy" type="button" data-copy="pypiCmd">Copy</button>
+          </div>
+          <pre class="snippet__code"><code id="pypiCmd">claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp</code></pre>
+        </div>
+        <div class="snippet">
+          <div class="snippet__bar">
+            <span class="snippet__label">Claude Code plugin</span>
+            <button class="btn btn--copy" type="button" data-copy="pluginCmds">Copy</button>
+          </div>
+          <pre class="snippet__code"><code id="pluginCmds">/plugin marketplace add derberg/asyncapi-knowledge-mcp
+/plugin install asyncapi-knowledge@ai</code></pre>
+        </div>
+        <div class="snippet snippet--wide">
+          <div class="snippet__bar">
+            <span class="snippet__label">Clone &amp; run this chat locally</span>
+            <button class="btn btn--copy" type="button" data-copy="localRun">Copy</button>
+          </div>
+          <pre class="snippet__code"><code id="localRun">git clone https://github.com/derberg/asyncapi-knowledge-mcp
+./scripts/run-local.sh</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="chat reveal" data-reveal="3">
+      <div class="transcript" id="transcript" role="log" aria-live="polite" aria-label="Conversation">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-state__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+          <p>Try asking:</p>
+          <div class="empty-state__chips">
+            <button class="chip chip--suggest" type="button" data-suggest="What is AsyncAPI and what problems does it solve?">What is AsyncAPI?</button>
+            <button class="chip chip--suggest" type="button" data-suggest="How do I define a channel in AsyncAPI 3.0?">Define a channel in AsyncAPI 3.0</button>
+            <button class="chip chip--suggest" type="button" data-suggest="What are the differences between AsyncAPI 2.x and 3.0?">AsyncAPI 2.x vs 3.0 differences</button>
+            <button class="chip chip--suggest" type="button" data-suggest="How does message schema validation work in AsyncAPI?">Message schema validation</button>
+          </div>
+        </div>
+      </div>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <div class="composer__row">
+          <div class="composer__field">
+            <textarea
+              id="input"
+              class="composer__input"
+              rows="1"
+              placeholder="Ask about AsyncAPI spec, tooling, concepts…"
+              aria-label="Your question"
+            ></textarea>
+          </div>
+          <button class="btn btn--send" type="submit" id="send" aria-label="Send question">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+              <path d="M4 12l15-7-5 7 5 7-15-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer__copy">
+        MIT License &nbsp;·&nbsp;
+        <a href="https://github.com/derberg/asyncapi-knowledge-mcp" target="_blank" rel="noopener">GitHub</a>
+      </p>
+      <p class="footer__disclaimer">Community project — not an official AsyncAPI Initiative service.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="markdown.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+name: Weekly knowledge refresh
+
+on:
+  schedule:
+    - cron: "0 3 * * 6"   # Saturdays 03:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+env:
+  OPENCRANE_VERSION: 0.18.7
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        with:
+          version: "0.8.19"
+
+      - name: Download the AsyncAPI JSON Schema
+        run: node scripts/download-schema.mjs
+
+      - name: Re-fetch sources and regenerate committed inputs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}   # opencrane fetch needs a non-empty token
+        run: |
+          uvx "opencrane@${OPENCRANE_VERSION}" fetch
+          uvx "opencrane@${OPENCRANE_VERSION}" llms
+          uvx "opencrane@${OPENCRANE_VERSION}" chunk
+
+      - name: Check whether chunks actually changed
+        id: chunks
+        # Embeddings depend only on chunks.json — if it is byte-identical after
+        # the re-fetch, skip the (paid) embedding regeneration entirely.
+        run: |
+          if ! git diff --quiet -- .opencrane/chunks.json; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif [ ! -f data/vectors.bin ]; then
+            # Bootstrap: vector artifacts have never been generated yet.
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "data/vectors.bin missing — generating embeddings for the first time."
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "chunks.json unchanged — skipping embedding regeneration."
+          fi
+
+      - name: Regenerate embeddings + vector index (only when chunks changed)
+        if: steps.chunks.outputs.changed == 'true'
+        run: |
+          uvx "opencrane@${OPENCRANE_VERSION}" embed
+          uvx "opencrane@${OPENCRANE_VERSION}" index
+          npm ci && node scripts/embed.mjs
+        env:
+          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
+
+      - name: Commit refreshed inputs if changed
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # embeddings.json / milvus.db / data/vectors.bin are LFS-tracked
+          # (see .gitattributes) — git lfs must be active for the clean filter.
+          git lfs install --local
+          # Committed inputs: opencrane outputs (incl. fetched sources and the
+          # locally-mirrored schema under .opencrane/sources, LFS artifacts),
+          # vector artifacts.
+          git add .opencrane/sources .opencrane/chunks.json .opencrane/llmstxt \
+                  .opencrane/embeddings.json .opencrane/milvus.db data/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No content changes this week."
+          else
+            git commit -m "chore: weekly content refresh ($(date -u +%Y-%m-%d))"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+# Vercel auto-deploys on every push to main — the commit above is sufficient to
+# ship the refreshed content. NO explicit deploy step needed here.
+#
+# Releases gate the PyPI publish only (publish-pypi.yml).

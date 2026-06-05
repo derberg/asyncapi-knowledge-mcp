@@ -1,0 +1,6 @@
+{
+  "name": "asyncapi-knowledge",
+  "description": "AsyncAPI documentation plugin — an asyncapi-researcher agent backed by the public AsyncAPI docs MCP server (search_docs over AsyncAPI concepts, tutorials, reference, guides, community docs, and the AsyncAPI 3.1.0 JSON Schema).",
+  "version": "0.1.0",
+  "author": "derberg"
+}

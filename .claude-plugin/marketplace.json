@@ -1,0 +1,14 @@
+{
+  "name": "ai",
+  "owner": {
+    "name": "derberg",
+    "url": "https://github.com/derberg/asyncapi-knowledge-mcp"
+  },
+  "plugins": [
+    {
+      "name": "asyncapi-knowledge",
+      "source": "./plugins/asyncapi-knowledge",
+      "description": "AsyncAPI documentation: an asyncapi-researcher agent backed by the public AsyncAPI docs MCP server."
+    }
+  ]
+}

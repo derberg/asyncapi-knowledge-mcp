@@ -1,0 +1,35 @@
+# OpenCrane artifact strategy
+# Committed: config.yaml, llmstxt/**, chunks.json, sources/ (fetched docs),
+#   embeddings.json + milvus.db + data/vectors.bin (via Git LFS — see .gitattributes).
+# CI (refresh.yml) regenerates the LFS artifacts ONLY when chunks.json changed.
+# Ignored (transient build output):
+.opencrane/pack/
+*.db.lock
+.opencrane/**/*.db.lock
+
+# Runtime logs
+.opencrane/fetch_docs.log
+*.log
+
+# model / HF caches
+.cache/
+**/.huggingface/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# node (chat function deps / build output, at any depth)
+node_modules/
+**/dist/
+
+# Local planning docs (superpowers plans/specs) -- never commit
+docs/superpowers/
+.superpowers/
+
+# Vercel
+.vercel/
+
+# Claude Code local settings (personal)
+.claude/settings.local.json

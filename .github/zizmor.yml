@@ -1,0 +1,8 @@
+rules:
+  artipacked:
+    # refresh.yml intentionally persists checkout credentials: the workflow
+    # commits the regenerated knowledge-base artifacts back to main with
+    # `git push` (contents: write). All other workflows set
+    # persist-credentials: false.
+    ignore:
+      - refresh.yml

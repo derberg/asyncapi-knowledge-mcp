@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "asyncapi-knowledge": {
+      "type": "http",
+      "url": "https://asyncapi-knowledge-mcp.vercel.app/api/mcp"
+    }
+  }
+}

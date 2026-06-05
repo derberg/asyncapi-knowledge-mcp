@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "asyncapi-knowledge": {
+      "type": "http",
+      "url": "http://localhost:7180/api/mcp"
+    }
+  }
+}
