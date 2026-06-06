@@ -16,6 +16,7 @@
   var form = document.getElementById("composer");
   var input = document.getElementById("input");
   var sendBtn = document.getElementById("send");
+  var optIn = document.getElementById("analyticsOptIn");
 
   /* ---------- "Use it in your own tools" panel ---------- */
   var toolsToggle = document.getElementById("toolsToggle");
@@ -208,6 +209,7 @@
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           messages: conversation.slice(),
+          analyticsOptIn: !!(optIn && optIn.checked),
         }),
       });
 

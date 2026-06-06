@@ -772,6 +772,54 @@ a:hover { color: var(--aa-purple-500); }
   .sustain { border-radius: var(--aa-radius-md); padding: 10px 14px; }
 }
 
+/* Opt-in anonymous question analytics (off by default) */
+.optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 12px 4px 0;
+  cursor: pointer;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6a6a8a;
+}
+.optin__box {
+  position: absolute;
+  opacity: 0;
+  width: 1px; height: 1px;
+  margin: 0;
+}
+.optin__custom {
+  flex: 0 0 auto;
+  width: 17px; height: 17px;
+  margin-top: 1px;
+  border-radius: 5px;
+  border: 1.5px solid #b9b3c6;
+  background: #fff;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+.optin__custom::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 4px; height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.optin__box:checked + .optin__custom {
+  background: var(--aa-purple-500);
+  border-color: var(--aa-purple-500);
+}
+.optin__box:checked + .optin__custom::after { transform: rotate(45deg) scale(1); }
+.optin__box:focus-visible + .optin__custom {
+  outline: 2px solid var(--aa-purple-500);
+  outline-offset: 2px;
+}
+.optin__muted { color: #9a96a8; }
+
 /* Demo-instance footnote inside the chat card */
 .chat-footnote {
   margin: 10px 4px 0;

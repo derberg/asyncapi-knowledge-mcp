@@ -130,6 +130,18 @@ export async function handleChat(req: Request, deps: HandlerDeps): Promise<Respo
       maxRounds: deps.maxRounds,
     });
 
+    // Opt-in, anonymous question analytics: only the question text (capped)
+    // and the round count — no IP, no headers, no PII. Lands in the Vercel
+    // function logs; used to learn what content is missing from the docs.
+    if (raw.analyticsOptIn === true) {
+      const lastUser = [...userMessages].reverse().find((m) => m.role === "user");
+      if (lastUser) {
+        console.log(
+          `ANALYTICS ${JSON.stringify({ q: lastUser.content.slice(0, 500), rounds: result.rounds })}`
+        );
+      }
+    }
+
     return new Response(
       JSON.stringify({ answer: result.answer, citations: result.citations }),
       {

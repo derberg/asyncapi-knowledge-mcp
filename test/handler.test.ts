@@ -299,3 +299,59 @@ describe("handleChat success", () => {
     expect(JSON.stringify(json)).not.toContain("secret");
   });
 });
+
+// ---------------------------------------------------------------------------
+// Opt-in question analytics
+// ---------------------------------------------------------------------------
+
+describe("handleChat analytics opt-in", () => {
+  const deps = { runAgent: fakeRunAgent, allowedOrigins: "*", persona: "p" };
+
+  it("logs the last user question when analyticsOptIn is true", async () => {
+    const spy = vi.spyOn(console, "log").mockImplementation(() => {});
+    const res = await handleChat(
+      makeReq({
+        messages: [{ role: "user", content: "How do Kafka bindings work?" }],
+        analyticsOptIn: true,
+      }),
+      deps
+    );
+    expect(res.status).toBe(200);
+    const line = spy.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith("ANALYTICS "));
+    expect(line).toBeDefined();
+    const payload = JSON.parse(line!.slice("ANALYTICS ".length));
+    expect(payload.q).toBe("How do Kafka bindings work?");
+    expect(payload.rounds).toBe(2);
+    // anonymous: ONLY question + rounds — no other fields
+    expect(Object.keys(payload).sort()).toEqual(["q", "rounds"]);
+    spy.mockRestore();
+  });
+
+  it("logs NOTHING when analyticsOptIn is absent (off by default)", async () => {
+    const spy = vi.spyOn(console, "log").mockImplementation(() => {});
+    await handleChat(makeReq({ messages: [{ role: "user", content: "secret question" }] }), deps);
+    expect(spy.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith("ANALYTICS "))).toBeUndefined();
+    spy.mockRestore();
+  });
+
+  it("logs NOTHING when analyticsOptIn is explicitly false", async () => {
+    const spy = vi.spyOn(console, "log").mockImplementation(() => {});
+    await handleChat(
+      makeReq({ messages: [{ role: "user", content: "secret" }], analyticsOptIn: false }),
+      deps
+    );
+    expect(spy.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith("ANALYTICS "))).toBeUndefined();
+    spy.mockRestore();
+  });
+
+  it("caps the logged question at 500 chars", async () => {
+    const spy = vi.spyOn(console, "log").mockImplementation(() => {});
+    await handleChat(
+      makeReq({ messages: [{ role: "user", content: "x".repeat(2000) }], analyticsOptIn: true }),
+      deps
+    );
+    const line = spy.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith("ANALYTICS "));
+    expect(JSON.parse(line!.slice("ANALYTICS ".length)).q.length).toBe(500);
+    spy.mockRestore();
+  });
+});
