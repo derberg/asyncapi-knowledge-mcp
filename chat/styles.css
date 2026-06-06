@@ -724,7 +724,7 @@ a:hover { color: var(--aa-purple-500); }
    Sustain AsyncAPI callout
    ============================================================ */
 .sustain {
-  margin: 28px auto 0;
+  margin: 0 auto 24px;
   background: linear-gradient(135deg, #f6f3fc 0%, #eef6fb 100%);
   border: 1px solid #e3dcf4;
   border-radius: var(--aa-radius-md);
