@@ -65,20 +65,48 @@ jobs:
         with:
           packages-dir: .opencrane/pack/dist
 
-      # Factory-rebuild the Hugging Face Space so it reinstalls the freshly
-      # published package (the Space's Dockerfile pip-installs
-      # asyncapi-knowledge-mcp). Skips gracefully until HF_TOKEN (a write-scoped
-      # HF access token) is added as a repo secret.
-      - name: Trigger Hugging Face Space rebuild
+  # After a successful publish, bump the asyncapi-knowledge-mcp==X.Y.Z pin in
+  # every location (chat snippets, README, plugin .mcp.json, Space Dockerfile)
+  # and push the updated Dockerfile to the Space. Pinning policy: no implicit
+  # "latest", anywhere — so every release must propagate its version
+  # deliberately, and a factory rebuild alone would just reinstall the OLD
+  # pinned version. Uploading the re-pinned Dockerfile triggers the rebuild.
+  bump-pins:
+    needs: publish
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: main # the bump lands on main, not on the tag
+
+      - name: Bump the package pin everywhere
+        run: node scripts/bump-package-pin.mjs "${GITHUB_REF_NAME#v}"
+
+      - name: Commit the bump to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add chat/index.html README.md plugins/ space/
+          if git diff --cached --quiet; then
+            echo "Pins already at ${GITHUB_REF_NAME#v} — nothing to commit."
+          else
+            git commit -m "chore: bump asyncapi-knowledge-mcp pin to ${GITHUB_REF_NAME#v}"
+            git push origin main
+          fi
+
+      - name: Push the updated Dockerfile to the Hugging Face Space
+        # Skips gracefully until HF_TOKEN (a write-scoped HF access token) is
+        # added as a repo secret.
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE: derberg/asyncapi-knowledge-mcp
         run: |
           if [ -z "$HF_TOKEN" ]; then
-            echo "HF_TOKEN not set — skipping Hugging Face Space rebuild."
+            echo "::warning::HF_TOKEN secret not set — Space NOT updated; it still serves the previous release. Push space/ manually with 'hf upload'."
             exit 0
           fi
-          curl -fsS --retry 3 --retry-delay 5 -X POST \
-            -H "Authorization: Bearer $HF_TOKEN" \
-            "https://huggingface.co/api/spaces/${HF_SPACE}/restart?factory=true"
-          echo "Requested factory rebuild of HF Space ${HF_SPACE}."
+          pipx install "huggingface_hub[cli]==0.36.0"
+          hf upload "$HF_SPACE" space/ . --repo-type space \
+            --commit-message "Bump asyncapi-knowledge-mcp pin to ${GITHUB_REF_NAME#v}"

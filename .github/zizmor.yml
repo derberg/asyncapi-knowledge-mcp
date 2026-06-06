@@ -1,8 +1,11 @@
 rules:
   artipacked:
-    # refresh.yml intentionally persists checkout credentials: the workflow
-    # commits the regenerated knowledge-base artifacts back to main with
-    # `git push` (contents: write). All other workflows set
-    # persist-credentials: false.
+    # These workflows intentionally persist checkout credentials because they
+    # commit back to main with `git push` (contents: write):
+    # - refresh.yml: weekly regenerated knowledge-base artifacts
+    # - publish-pypi.yml: the bump-pins job propagates the released version
+    #   into every pinned location (publish job sets persist-credentials: false)
+    # All other checkouts set persist-credentials: false.
     ignore:
       - refresh.yml
+      - publish-pypi.yml
