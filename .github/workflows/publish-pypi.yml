@@ -64,3 +64,21 @@ jobs:
         uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
         with:
           packages-dir: .opencrane/pack/dist
+
+      # Factory-rebuild the Hugging Face Space so it reinstalls the freshly
+      # published package (the Space's Dockerfile pip-installs
+      # asyncapi-knowledge-mcp). Skips gracefully until HF_TOKEN (a write-scoped
+      # HF access token) is added as a repo secret.
+      - name: Trigger Hugging Face Space rebuild
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: derberg/asyncapi-knowledge-mcp
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "HF_TOKEN not set — skipping Hugging Face Space rebuild."
+            exit 0
+          fi
+          curl -fsS --retry 3 --retry-delay 5 -X POST \
+            -H "Authorization: Bearer $HF_TOKEN" \
+            "https://huggingface.co/api/spaces/${HF_SPACE}/restart?factory=true"
+          echo "Requested factory rebuild of HF Space ${HF_SPACE}."
