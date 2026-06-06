@@ -38,11 +38,19 @@ jobs:
       - name: Build the AsyncAPI use cases source
         run: node scripts/build-usecases.mjs
 
-      - name: Re-fetch sources and regenerate committed inputs
+      - name: Re-fetch sources
         env:
           GITHUB_TOKEN: ${{ github.token }}   # opencrane fetch needs a non-empty token
+        run: uvx "opencrane@${OPENCRANE_VERSION}" fetch
+
+      - name: Restore docs_url stripped by fetch
+        # `opencrane fetch` rewrites config.yaml and drops docs_url from fetched
+        # sources, which would make `llms` emit github.com/.../blob/main links on
+        # the wrong branch. Re-apply it before generating llms/chunks.
+        run: node scripts/restore-docs-url.mjs
+
+      - name: Regenerate committed inputs
         run: |
-          uvx "opencrane@${OPENCRANE_VERSION}" fetch
           uvx "opencrane@${OPENCRANE_VERSION}" llms
           uvx "opencrane@${OPENCRANE_VERSION}" chunk
 
