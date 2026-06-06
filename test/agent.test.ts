@@ -231,6 +231,7 @@ describe("runAgent resilience", () => {
       persona: "You are a helpful researcher.",
       userMessages: [{ role: "user", content: "Deep question" }],
       model,
+      search,
     });
 
     expect(r.answer).toBe("Found it after extensive searching.");
