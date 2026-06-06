@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  OPENCRANE_VERSION: 0.18.7
+  OPENCRANE_VERSION: 0.18.8
 
 jobs:
   refresh:

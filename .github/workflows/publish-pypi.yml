@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  OPENCRANE_VERSION: 0.18.7
+  OPENCRANE_VERSION: 0.18.8
 
 jobs:
   publish:
@@ -25,9 +25,10 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          # embeddings.json + milvus.db are LFS-tracked committed artifacts,
-          # kept current by refresh.yml (regenerated only when chunks change).
-          # No re-embedding here — pack uses the committed vectors as-is.
+          # embeddings.json + chunks.json are LFS-tracked committed artifacts,
+          # kept current by refresh.yml. No re-embedding here (no model); the
+          # Milvus index is rebuilt from the committed embeddings in the step
+          # below so the packaged milvus.db always matches the committed chunks.
           lfs: true
           persist-credentials: false
 
@@ -38,6 +39,12 @@ jobs:
           # up inside the published PyPI artefact (zizmor: cache-poisoning).
           enable-cache: false
 
+      - name: Rebuild the vector index from committed chunks + embeddings
+        # pack ships .opencrane/milvus.db. Regenerate it here — cheap, no model,
+        # just loads the committed embeddings.json — so the packaged index can
+        # never lag chunks.json (e.g. after a manual content edit).
+        run: uvx "opencrane@${OPENCRANE_VERSION}" index
+
       # The version comes from the GitHub release tag, as-is with a leading
       # "v" stripped (e.g. a release tagged "v2026.6.7" publishes 2026.6.7).
       - name: Pack the MCP package
@@ -47,11 +54,11 @@ jobs:
           uvx "opencrane@${OPENCRANE_VERSION}" pack --name asyncapi-knowledge-mcp --version "$VERSION" --output .opencrane/pack
 
       - name: Build wheel + sdist
-        # opencrane pack scaffolds the source tree; `build` produces the
-        # dist/ artefacts that pypi-publish consumes.
-        run: |
-          uv pip install --system build==1.2.2
-          python -m build .opencrane/pack --outdir .opencrane/pack/dist
+        # opencrane pack scaffolds the source tree; `uv build` produces the
+        # dist/ artefacts that pypi-publish consumes. Use uv's isolated build
+        # (PEP 517) rather than `pip install --system build`, which fails on the
+        # runner's externally-managed /usr Python (PEP 668).
+        run: uv build .opencrane/pack --out-dir .opencrane/pack/dist
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
