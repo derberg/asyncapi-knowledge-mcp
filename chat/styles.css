@@ -795,6 +795,7 @@ a:hover { color: var(--aa-purple-500); }
   text-underline-offset: 2px;
 }
 .footer__copy a:hover { color: var(--aa-cyan-600); }
+.footer__heart { font-size: 1em; vertical-align: -0.05em; }
 .footer__disclaimer {
   margin: 0;
   font-size: 12px;
