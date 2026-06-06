@@ -6,7 +6,7 @@ import { buildDeps } from "../lib/chat/deps.js";
 const allowedOrigins = process.env.ALLOWED_ORIGINS ?? "*";
 // I4: guard against NaN/negative/zero from a malformed env var
 const parsed = parseInt(process.env.MAX_TOOL_ROUNDS ?? "", 10);
-const maxRounds = Number.isFinite(parsed) && parsed > 0 ? parsed : 4;
+const maxRounds = Number.isFinite(parsed) && parsed > 0 ? parsed : 16;
 
 // model + search backend built once per cold-start from env vars.
 // See lib/chat/deps.ts for the full env-var reference.

@@ -17,7 +17,9 @@ export async function runAgent(opts: {
   maxRounds?: number;
 }): Promise<AgentResult> {
   const search = opts.search ?? searchDocs;
-  const maxRounds = opts.maxRounds ?? 4;
+  // Generous by default — a starved budget makes the agent give up with the
+  // "couldn't complete the search" fallback while it is still mid-research.
+  const maxRounds = opts.maxRounds ?? 16;
   const citations: Citation[] = [];
 
   const result = await generateText({

@@ -185,3 +185,55 @@ describe("runAgent", () => {
     expect(r.citations).toEqual(expectedCitations);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Resilience: search failures must not abort the request (no 500s),
+// and the default round budget must not starve multi-search questions.
+// ---------------------------------------------------------------------------
+
+describe("runAgent resilience", () => {
+  it("a throwing search does not reject — the error is surfaced to the model as tool output", async () => {
+    const search = vi.fn(async () => {
+      throw new Error("MCP backend unreachable");
+    });
+
+    const model = new MockLanguageModelV3({
+      doGenerate: [
+        null as any,
+        makeToolCallResult("t1", "search_docs", JSON.stringify({ query: "anything" })),
+        makeTextResult("The knowledge base is temporarily unavailable."),
+      ],
+    });
+
+    const r = await runAgent({
+      persona: "You are a helpful researcher.",
+      userMessages: [{ role: "user", content: "What is AsyncAPI?" }],
+      model,
+      search,
+    });
+
+    expect(search).toHaveBeenCalledOnce();
+    expect(r.answer).toBe("The knowledge base is temporarily unavailable.");
+  });
+
+  it("default round budget allows at least 10 tool rounds before the fallback", async () => {
+    const search = vi.fn(async () => ({ text: "", citations: [] }));
+
+    // 10 consecutive tool-call rounds, then a final text turn.
+    const rounds = Array.from({ length: 10 }, (_, i) =>
+      makeToolCallResult(`t${i}`, "search_docs", JSON.stringify({ query: `q${i}` }))
+    );
+    const model = new MockLanguageModelV3({
+      doGenerate: [null as any, ...rounds, makeTextResult("Found it after extensive searching.")],
+    });
+
+    const r = await runAgent({
+      persona: "You are a helpful researcher.",
+      userMessages: [{ role: "user", content: "Deep question" }],
+      model,
+    });
+
+    expect(r.answer).toBe("Found it after extensive searching.");
+    expect(search).toHaveBeenCalledTimes(10);
+  });
+});
