@@ -819,6 +819,12 @@ a:hover { color: var(--aa-purple-500); }
   outline-offset: 2px;
 }
 .optin__muted { color: #9a96a8; }
+.optin__muted a {
+  color: #9a96a8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.optin__muted a:hover { color: var(--aa-purple-500); }
 
 /* Demo-instance footnote inside the chat card */
 .chat-footnote {
