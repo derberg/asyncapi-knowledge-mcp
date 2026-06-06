@@ -63,17 +63,14 @@
         </div>
         <div class="snippet">
           <div class="snippet__bar">
-            <span class="snippet__label">Claude Code — one command</span>
-            <button class="btn btn--copy" type="button" data-copy="pypiCmd">Copy</button>
+            <span class="snippet__label">Claude Code</span>
+            <button class="btn btn--copy" type="button" data-copy="claudeCode">Copy</button>
           </div>
-          <pre class="snippet__code"><code id="pypiCmd">claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2</code></pre>
-        </div>
-        <div class="snippet">
-          <div class="snippet__bar">
-            <span class="snippet__label">Claude Code plugin</span>
-            <button class="btn btn--copy" type="button" data-copy="pluginCmds">Copy</button>
-          </div>
-          <pre class="snippet__code"><code id="pluginCmds">/plugin marketplace add derberg/asyncapi-knowledge-mcp
+          <pre class="snippet__code"><code id="claudeCode"># MCP server — one command
+claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2
+
+# or as a plugin (researcher agent + MCP server)
+/plugin marketplace add derberg/asyncapi-knowledge-mcp
 /plugin install asyncapi-knowledge@ai</code></pre>
         </div>
         <div class="snippet snippet--wide">
