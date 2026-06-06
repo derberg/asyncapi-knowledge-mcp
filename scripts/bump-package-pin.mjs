@@ -31,6 +31,7 @@ export const PINNED_FILES = [
   { path: "chat/index.html", expected: 2 }, // .mcp.json snippet + claude mcp add
   { path: "README.md", expected: 2 }, // claude mcp add + client config
   { path: "plugins/asyncapi-knowledge/.mcp.json", expected: 1 },
+  { path: ".mcp.json", expected: 1 }, // this repo's own local MCP registration
   { path: "space/Dockerfile", expected: 1 },
 ];
 

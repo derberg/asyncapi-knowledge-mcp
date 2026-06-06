@@ -15,7 +15,7 @@ export interface HandlerDeps {
   allowedOrigins: string;
   persona: string;
   model?: LanguageModel; // m3: typed via ai's LanguageModel instead of any
-  search?: any;
+  search?: any; // always provided by api/chat.ts; optional for handler tests
   maxRounds?: number;
 }
 

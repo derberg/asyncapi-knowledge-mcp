@@ -5,7 +5,6 @@
 # serves everything, exactly like Vercel does in production:
 #   - static chat UI               http://localhost:<CHAT_PORT>/
 #   - chat function (agent loop)   http://localhost:<CHAT_PORT>/api/chat
-#   - MCP server                   http://localhost:<CHAT_PORT>/api/mcp
 #
 # DEFAULT MODE (offline):
 #   - Inference via local Ollama (OpenAI-compatible) — zero keys needed.
@@ -14,7 +13,8 @@
 #   - Requires: uv (for uvx), Ollama, Node 20+.
 #
 # HOSTED MODE (--hosted):
-#   - Production parity: in-process search + AI Gateway inference.
+#   - Production parity: search via the Hugging Face Space MCP + AI Gateway
+#     inference (override the backend via SEARCH_MCP_URL).
 #   - Requires: AI_GATEWAY_API_KEY (env or .env.local), Node 20+.
 #
 # Ports default to 7180 (dev server) and 7181 (local OpenCrane MCP) — chosen
@@ -93,6 +93,8 @@ if [ "$MODE" = "--hosted" ]; then
     exit 1
   fi
   export AI_GATEWAY_API_KEY
+  # Production parity: search on the public HF Space unless overridden.
+  export SEARCH_MCP_URL="${SEARCH_MCP_URL:-https://derberg-asyncapi-knowledge-mcp.hf.space/http}"
 else
   # --- offline: needs uvx + ollama, no gateway key required -----------------
   need uvx; need ollama
@@ -115,15 +117,6 @@ fi
 
 # --- node deps for the dev server (tsx) --------------------------------------
 [ -d node_modules ] || npm install
-
-# --- index check (hosted mode): data/vectors.* come from the weekly refresh --
-if [ "$MODE" = "--hosted" ] && [ ! -f data/vectors.bin ]; then
-  echo "WARNING: data/vectors.bin not found." >&2
-  echo "  The search_docs tool will return errors until the index is built:" >&2
-  echo "    node scripts/embed.mjs --dry-run   # preview scope, no API calls" >&2
-  echo "    npm run embed                      # build (needs AI_GATEWAY_API_KEY)" >&2
-  echo ""
-fi
 
 cleanup() {
   trap - INT TERM EXIT
@@ -169,13 +162,12 @@ wait_http "http://localhost:$CHAT_PORT" "dev server" 60
 
 echo ""
 if [ "$MODE" = "--hosted" ]; then
-  echo "Ready (hosted — AI Gateway inference, in-process search)."
+  echo "Ready (hosted — AI Gateway inference, search via $SEARCH_MCP_URL)."
 else
   echo "Ready (offline — Ollama '$OLLAMA_MODEL' at $OLLAMA_URL, OpenCrane MCP at :$MCP_PORT)."
 fi
 echo "  Chat UI:   http://localhost:$CHAT_PORT"
 echo "  Function:  http://localhost:$CHAT_PORT/api/chat"
-echo "  MCP:       http://localhost:$CHAT_PORT/api/mcp"
 if [ "$MODE" != "--hosted" ]; then
   echo "  Local MCP: http://localhost:$MCP_PORT/mcp"
 fi

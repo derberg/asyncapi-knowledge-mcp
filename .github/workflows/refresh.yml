@@ -29,8 +29,14 @@ jobs:
         with:
           version: "0.8.19"
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Download the AsyncAPI JSON Schema
         run: node scripts/download-schema.mjs
+
+      - name: Build the AsyncAPI use cases source
+        run: node scripts/build-usecases.mjs
 
       - name: Re-fetch sources and regenerate committed inputs
         env:
@@ -43,14 +49,10 @@ jobs:
       - name: Check whether chunks actually changed
         id: chunks
         # Embeddings depend only on chunks.json — if it is byte-identical after
-        # the re-fetch, skip the (paid) embedding regeneration entirely.
+        # the re-fetch, skip the (slow) embedding regeneration entirely.
         run: |
           if ! git diff --quiet -- .opencrane/chunks.json; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
-          elif [ ! -f data/vectors.bin ]; then
-            # Bootstrap: vector artifacts have never been generated yet.
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "data/vectors.bin missing — generating embeddings for the first time."
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "chunks.json unchanged — skipping embedding regeneration."
@@ -58,6 +60,9 @@ jobs:
 
       - name: Regenerate embeddings + vector index (only when chunks changed)
         if: steps.chunks.outputs.changed == 'true'
+        # Uses opencrane's LOCAL embedding model — no API keys needed. The
+        # artifacts feed the PyPI package and the Hugging Face Space (the
+        # search backends); nothing on Vercel consumes vectors anymore.
         run: |
           # The checkout skips LFS on purpose (no bandwidth burn) so milvus.db
           # in the working tree is a 134-byte LFS POINTER file. Milvus Lite
@@ -66,23 +71,19 @@ jobs:
           rm -f .opencrane/milvus.db .opencrane/embeddings.json
           uvx "opencrane@${OPENCRANE_VERSION}" embed
           uvx "opencrane@${OPENCRANE_VERSION}" index
-          npm ci && node scripts/embed.mjs
-        env:
-          AI_GATEWAY_API_KEY: ${{ secrets.AI_GATEWAY_API_KEY }}
 
       - name: Commit refreshed inputs if changed
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # embeddings.json / milvus.db / data/vectors.bin are LFS-tracked
-          # (see .gitattributes) — git lfs must be active for the clean filter.
+          # embeddings.json / milvus.db are LFS-tracked (see .gitattributes) —
+          # git lfs must be active for the clean filter.
           git lfs install --local
           # Committed inputs: opencrane outputs (incl. fetched sources and the
-          # locally-mirrored schema under .opencrane/sources, LFS artifacts),
-          # vector artifacts.
+          # locally-mirrored schema under .opencrane/sources) + LFS artifacts.
           git add .opencrane/sources .opencrane/chunks.json .opencrane/llmstxt \
-                  .opencrane/embeddings.json .opencrane/milvus.db data/
+                  .opencrane/embeddings.json .opencrane/milvus.db
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No content changes this week."

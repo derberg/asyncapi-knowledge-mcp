@@ -1,7 +1,7 @@
 import { gateway } from "@ai-sdk/gateway";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import type { LanguageModel } from "ai";
-import { searchDocs } from "../search/index.js";
+import type { SearchFn } from "../search/index.js";
 import { searchDocsViaMcp } from "../search/mcp-backend.js";
 
 // ---------------------------------------------------------------------------
@@ -10,14 +10,16 @@ import { searchDocsViaMcp } from "../search/mcp-backend.js";
 
 export interface ChatDeps {
   model: LanguageModel;
-  search: typeof searchDocs;
+  search: SearchFn;
 }
 
 // ---------------------------------------------------------------------------
 // buildDeps — construct model + search backend from environment variables
 //
 // Env vars:
-//   SEARCH_MCP_URL      — if set, use the local OpenCrane MCP server for search
+//   SEARCH_MCP_URL      — REQUIRED. OpenCrane MCP server for search_docs:
+//                         the Hugging Face Space in production, a local
+//                         `opencrane serve --transport http` in dev.
 //   CHAT_MODEL_BASE_URL — if set, use an OpenAI-compatible endpoint (e.g. Ollama)
 //   CHAT_MODEL          — required when CHAT_MODEL_BASE_URL is set
 //   CHAT_MODEL_API_KEY  — optional API key (defaults to "ollama")
@@ -26,9 +28,14 @@ export interface ChatDeps {
 export function buildDeps(env: NodeJS.ProcessEnv): ChatDeps {
   // --- search backend -------------------------------------------------------
   const mcpUrl = env.SEARCH_MCP_URL;
-  const search: typeof searchDocs = mcpUrl
-    ? (q: string, k?: number) => searchDocsViaMcp(q, mcpUrl, k)
-    : searchDocs;
+  if (!mcpUrl) {
+    throw new Error(
+      "SEARCH_MCP_URL is required — point it at an OpenCrane MCP server.\n" +
+        "  Production: SEARCH_MCP_URL=https://derberg-asyncapi-knowledge-mcp.hf.space/http\n" +
+        "  Local dev:  SEARCH_MCP_URL=http://localhost:8000/http (opencrane serve --transport http)"
+    );
+  }
+  const search: SearchFn = (q, k) => searchDocsViaMcp(q, mcpUrl, k);
 
   // --- model ----------------------------------------------------------------
   const baseURL = env.CHAT_MODEL_BASE_URL;

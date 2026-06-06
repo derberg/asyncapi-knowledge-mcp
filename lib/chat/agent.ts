@@ -1,7 +1,6 @@
 import { generateText, tool, stepCountIs, type LanguageModel } from "ai";
 import { z } from "zod";
-import { searchDocs } from "../search/index.js";
-import type { Citation } from "../search/index.js";
+import type { Citation, SearchFn } from "../search/index.js";
 
 export interface AgentResult {
   answer: string;
@@ -13,10 +12,11 @@ export async function runAgent(opts: {
   persona: string;
   userMessages: { role: "user" | "assistant"; content: string }[];
   model: LanguageModel;
-  search?: typeof searchDocs;
+  search?: SearchFn; // optional in the type (handler plumbing) — required at runtime
   maxRounds?: number;
 }): Promise<AgentResult> {
-  const search = opts.search ?? searchDocs;
+  const search = opts.search;
+  if (!search) throw new Error("runAgent requires a search function (see buildDeps)");
   // Generous by default — a starved budget makes the agent give up with the
   // "couldn't complete the search" fallback while it is still mid-research.
   const maxRounds = opts.maxRounds ?? 16;

@@ -2,10 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "buildCommand": "",
-  "outputDirectory": "chat",
-  "functions": {
-    "api/**/*.ts": {
-      "includeFiles": "data/**"
-    }
-  }
+  "outputDirectory": "chat"
 }

@@ -41,7 +41,7 @@ export async function searchDocsViaMcp(
   try {
     const res: any = await client.callTool({
       name: "search_docs",
-      // OpenCrane's search_docs takes `limit` (our in-process core calls it k)
+      // OpenCrane's search_docs takes `limit` (our SearchFn signature calls it k)
       arguments: { query, limit: k },
     });
     const text = (res.content ?? [])

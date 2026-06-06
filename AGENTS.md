@@ -1,6 +1,6 @@
 # asyncapi-knowledge-mcp — Agent Instructions
 
-AI-powered documentation search for AsyncAPI, built with OpenCrane and hosted on Vercel. An OpenCrane pipeline indexes the AsyncAPI docs and JSON Schema into committed vector artifacts (`data/vectors.*`) served as a public MCP server via Vercel serverless functions (`api/mcp.ts`), plus a Claude plugin (`plugins/asyncapi-knowledge`), and a static chat UI (`chat/`). Licensed under MIT.
+AI-powered documentation search for AsyncAPI, built with OpenCrane. An OpenCrane pipeline indexes the AsyncAPI docs and JSON Schema into committed artifacts (`.opencrane/chunks.json` + LFS-tracked `embeddings.json`/`milvus.db`) served as a public MCP server two ways: a Hugging Face Docker Space (`space/`) and the `asyncapi-knowledge-mcp` PyPI package. A Claude plugin (`plugins/asyncapi-knowledge`) wires the PyPI server into Claude Code, and a static chat UI (`chat/` + `api/chat.ts`, hosted on Vercel) searches through the Space. Licensed under MIT.
 
 ## Authorship Rules
 
@@ -24,11 +24,11 @@ npm test
 npx tsc --noEmit
 ```
 
-MCP HTTP smoke test (needs a running local server — `./scripts/run-local.sh` or `npm run dev`):
+MCP HTTP smoke test (against the public Hugging Face Space by default):
 
 ```bash
 uv run --with mcp python tests/smoke_http.py
-# Override endpoint: MCP_URL=http://localhost:7180/api/mcp uv run --with mcp python tests/smoke_http.py
+# Override endpoint: MCP_URL=http://localhost:8000/http uv run --with mcp python tests/smoke_http.py
 ```
 
 PyPI / stdio smoke test (needs a built opencrane index with `uvx opencrane embed && uvx opencrane index`):
@@ -50,10 +50,11 @@ MILVUS_DB_PATH=.opencrane/milvus.db uv run --with mcp python tests/smoke_query.p
   `scripts/bundle-persona.mjs`. CI runs this script and checks `git diff --exit-code` — so
   `lib/chat/persona.generated.ts` must always match `agent/asyncapi-researcher.md`. Never edit
   `persona.generated.ts` directly; always edit the source and re-run the bundle script.
-- **`data/vectors.bin` and `data/vectors.meta.json` are committed.** They are the vector
-  search index served by `api/mcp.ts`. Regenerate them with `npm run embed` (needs
-  `AI_GATEWAY_API_KEY`) after any content change. The weekly refresh does this automatically.
-  `embeddings.json` and `milvus.db` are git-ignored (OpenCrane internal formats).
+- **`.opencrane/embeddings.json` and `.opencrane/milvus.db` are committed via Git LFS.**
+  They are the search index consumed by the PyPI package and the Hugging Face Space.
+  The weekly refresh regenerates them with OpenCrane's LOCAL embedding model (no API keys)
+  ONLY when `chunks.json` changed. There is no Vercel-side vector index — the chat searches
+  through the Space's MCP endpoint (`SEARCH_MCP_URL`).
 - **Content delivery does NOT require a release.** The weekly refresh workflow commits
   updated content to `main`; Vercel auto-deploys on every push. Releases gate the PyPI
   package publish only (`publish-pypi.yml`) — never wire content deploys to the release event.

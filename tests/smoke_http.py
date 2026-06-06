@@ -1,19 +1,19 @@
 """
 HTTP smoke test for the AsyncAPI Knowledge MCP server.
 
-Tests the /api/mcp endpoint (Vercel serverless function) over MCP Streamable HTTP.
+Tests the public OpenCrane MCP endpoint (Hugging Face Space) over MCP Streamable HTTP.
 
 Usage:
     uv run --with mcp python tests/smoke_http.py
 
 Override the endpoint:
-    MCP_URL=http://localhost:7180/api/mcp uv run --with mcp python tests/smoke_http.py
+    MCP_URL=http://localhost:8000/http uv run --with mcp python tests/smoke_http.py
 """
 import asyncio, os, sys
 from mcp import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 
-BASE = os.environ.get("MCP_URL", "http://localhost:7180/api/mcp")
+BASE = os.environ.get("MCP_URL", "https://derberg-asyncapi-knowledge-mcp.hf.space/http")
 # Try the configured URL first, then common path variants.
 CANDIDATES = [BASE.rstrip("/")]
 if not BASE.rstrip("/").endswith("/mcp"):

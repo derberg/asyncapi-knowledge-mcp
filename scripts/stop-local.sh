@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Stop a local stack started by scripts/run-local.sh:
-#   dev server (chat UI + /api/chat + /api/mcp)  :7180
+#   dev server (chat UI + /api/chat)             :7180
 #   local OpenCrane MCP (offline mode)           :7181
 #   (override the ports via CHAT_PORT / MCP_PORT to match run-local).
 #

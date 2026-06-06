@@ -4,7 +4,6 @@
 //
 //   GET  /*            -> static files from chat/
 //   ANY  /api/chat     -> api/chat.ts default export
-//   ANY  /api/mcp      -> api/mcp.ts default export
 //
 // The api/ handlers are web-standard (Request) => Promise<Response>, so this
 // just bridges Node's http server to them. Run via tsx (TS imports):
@@ -23,7 +22,6 @@ const PORT = Number.parseInt(process.env.PORT ?? "7180", 10);
 
 // api/* export the Web Handler form `{ fetch }` (so Vercel uses Web Request).
 const chatHandler = (await import("../api/chat.ts")).default.fetch;
-const mcpHandler = (await import("../api/mcp.ts")).default.fetch;
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -86,8 +84,6 @@ const server = createServer(async (req, res) => {
     const pathname = new URL(req.url, "http://x").pathname;
     if (pathname === "/api/chat") {
       await writeResponse(await chatHandler(await toRequest(req)), res);
-    } else if (pathname === "/api/mcp") {
-      await writeResponse(await mcpHandler(await toRequest(req)), res);
     } else if (req.method === "GET" || req.method === "HEAD") {
       await serveStatic(req, res);
     } else {
