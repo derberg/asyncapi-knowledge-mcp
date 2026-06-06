@@ -27,16 +27,10 @@
 
   <main class="wrap main">
     <section class="hero reveal" data-reveal="2">
-      <p class="hero__eyebrow">Cited answers · asyncapi.com/docs · JSON Schema 3.1.0</p>
       <h1 class="hero__title">Ask <span class="hero__gradient">AsyncAPI</span></h1>
       <p class="hero__lede">
-        Ask questions about the AsyncAPI specification, concepts, and tooling.
-        Get answers grounded in the official docs, with sources you can verify.
-      </p>
-      <p class="demo-note">
-        <strong>Demo instance</strong> — this hosted chat runs on a shoestring: ~$6/month of Vercel AI
-        credits plus a free, rate-limited Hugging Face deployment. Please don&rsquo;t overuse it — for
-        day-to-day work <a href="#toolsPanel" id="demoToolsLink">run it locally</a>, free and private.
+        Answers about the AsyncAPI spec, concepts, and tooling — grounded in the
+        official docs, with sources you can verify.
       </p>
     </section>
 
@@ -93,13 +87,11 @@ claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2
     <!-- Support AsyncAPI -->
     <aside class="sustain reveal" data-reveal="2">
       <span class="sustain__heart" aria-hidden="true">💜</span>
-      <p class="sustain__text">
-        <strong>AsyncAPI</strong> is the industry standard for describing event-driven APIs — created and
-        maintained by people with passion, not by big corporate funding. If it helps you ship better
-        systems, help sustain it.
-      </p>
+      <span class="sustain__text">
+        <strong>AsyncAPI</strong> is built by people with passion, not corporate funding.
+      </span>
       <a class="sustain__cta" href="https://opencollective.com/asyncapi" target="_blank" rel="noopener">
-        Support on Open&nbsp;Collective
+        Support it
       </a>
     </aside>
 
@@ -138,6 +130,11 @@ claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2
           </button>
         </div>
       </form>
+      <p class="chat-footnote">
+        Demo instance on limited credits (~$6/month, and rate-limited to a few questions per minute,
+        plus a rate-limited Hugging Face deploy) — for day-to-day use
+        <a href="#toolsPanel" id="demoToolsLink">run it locally</a>, free and private.
+      </p>
     </section>
 
     <!-- How it's built -->
