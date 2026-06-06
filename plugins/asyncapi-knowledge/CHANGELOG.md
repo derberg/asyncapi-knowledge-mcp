@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Bump the bundled MCP package pin to `asyncapi-knowledge-mcp==0.0.3`.
+
 ## 0.2.0
 
 - The MCP server now runs fully locally via the PyPI package (`uvx asyncapi-knowledge-mcp`,

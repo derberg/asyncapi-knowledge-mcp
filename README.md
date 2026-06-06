@@ -81,13 +81,13 @@ quiet spell cold-starts in ~10–30 s.
 Prefer running it locally? The knowledge base is also published to PyPI as a
 standalone MCP package (built with `opencrane pack`, refreshed weekly):
 
-    claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2
+    claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.3
 
 or in any MCP client's config:
 
     {
       "mcpServers": {
-        "asyncapi-knowledge": { "type": "stdio", "command": "uvx", "args": ["asyncapi-knowledge-mcp==0.0.2"] }
+        "asyncapi-knowledge": { "type": "stdio", "command": "uvx", "args": ["asyncapi-knowledge-mcp==0.0.3"] }
       }
     }
 
