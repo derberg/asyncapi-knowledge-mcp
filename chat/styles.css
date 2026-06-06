@@ -775,6 +775,7 @@ a:hover { color: var(--aa-purple-500); }
 /* Demo-instance footnote inside the chat card */
 .chat-footnote {
   margin: 10px 4px 0;
+  padding-bottom: 14px;
   font-size: 12px;
   line-height: 1.5;
   color: #8a8aa8;
