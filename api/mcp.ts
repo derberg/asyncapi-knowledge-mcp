@@ -20,4 +20,6 @@ const handler = createMcpHandler(
   { basePath: "/api" }
 );
 
-export default handler;
+// Web Handler form (`{ fetch }`) so Vercel passes a Web `Request` to the
+// mcp-handler instead of the legacy Node (req, res) objects.
+export default { fetch: handler };

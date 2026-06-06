@@ -21,8 +21,9 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const CHAT_DIR = join(ROOT, "chat");
 const PORT = Number.parseInt(process.env.PORT ?? "7180", 10);
 
-const chatHandler = (await import("../api/chat.ts")).default;
-const mcpHandler = (await import("../api/mcp.ts")).default;
+// api/* export the Web Handler form `{ fetch }` (so Vercel uses Web Request).
+const chatHandler = (await import("../api/chat.ts")).default.fetch;
+const mcpHandler = (await import("../api/mcp.ts")).default.fetch;
 
 const MIME = {
   ".html": "text/html; charset=utf-8",

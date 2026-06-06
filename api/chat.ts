@@ -12,12 +12,18 @@ const maxRounds = Number.isFinite(parsed) && parsed > 0 ? parsed : 4;
 // See lib/chat/deps.ts for the full env-var reference.
 const { model, search } = buildDeps(process.env);
 
-export default (req: Request): Promise<Response> =>
-  handleChat(req, {
-    runAgent,
-    allowedOrigins,
-    persona: PERSONA,
-    model,
-    search,
-    maxRounds,
-  });
+// Web Handler form (`{ fetch }`) so Vercel invokes this with a Web `Request`
+// (req.headers.get(...)) instead of the legacy Node (req, res) signature.
+// A bare `export default <fn>` is treated as the Node handler — see
+// https://vercel.com/docs/functions/functions-api-reference#fetch-web-standard
+export default {
+  fetch: (req: Request): Promise<Response> =>
+    handleChat(req, {
+      runAgent,
+      allowedOrigins,
+      persona: PERSONA,
+      model,
+      search,
+      maxRounds,
+    }),
+};
