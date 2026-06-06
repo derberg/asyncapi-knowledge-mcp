@@ -97,11 +97,12 @@ Use the AsyncAPI knowledge base from Claude Code via the `asyncapi-knowledge` pl
 `asyncapi-researcher` agent + the hosted MCP server):
 
     /plugin marketplace add derberg/asyncapi-knowledge-mcp
-    /plugin install asyncapi-knowledge@ai
+    /plugin install asyncapi-knowledge@askasyncapi-ai
 
 The plugin registers the `asyncapi-knowledge` MCP server (the `search_docs` tool over AsyncAPI
 docs and the 3.1.0 JSON Schema) and an `asyncapi-researcher` subagent that returns concise,
-cited findings. The MCP endpoint is configured in `plugins/asyncapi-knowledge/.mcp.json`.
+cited findings. The MCP server is configured in `plugins/asyncapi-knowledge/.mcp.json` —
+it runs locally via the pinned PyPI package.
 
 The agent persona is maintained once in `agent/asyncapi-researcher.md` and synced into the
 plugin with `scripts/sync-agent.sh` (CI enforces they stay identical). A `PostToolUse` hook
