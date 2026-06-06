@@ -8,7 +8,7 @@
     {
       "name": "asyncapi-knowledge",
       "source": "./plugins/asyncapi-knowledge",
-      "description": "AsyncAPI documentation: an asyncapi-researcher agent backed by the public AsyncAPI docs MCP server."
+      "description": "AsyncAPI documentation: an asyncapi-researcher agent backed by a fully local AsyncAPI docs MCP server (PyPI, no API keys)."
     }
   ]
 }
