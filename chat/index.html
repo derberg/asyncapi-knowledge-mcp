@@ -16,7 +16,6 @@
       <a class="logo" href="https://asyncapi.com" target="_blank" rel="noopener"
          aria-label="AsyncAPI (opens asyncapi.com in a new tab)">
         <img src="asyncapi-logo.svg" alt="AsyncAPI" width="140" height="36" />
-        <span class="logo__suffix">Knowledge</span>
       </a>
       <nav class="header-nav">
         <button class="btn btn--tools" type="button" id="toolsToggle" aria-expanded="false" aria-controls="toolsPanel">
@@ -40,26 +39,26 @@
     <section id="toolsPanel" class="tools-panel reveal" data-reveal="2" hidden>
       <div class="tools-panel__head">
         <h2 class="tools-panel__title">Use it in your own tools — or run it locally</h2>
-        <p class="tools-panel__sub">The AsyncAPI knowledge base speaks MCP. Wire it into your editor, install the Claude Code plugin, or clone the repo and run this whole chat on your machine.</p>
+        <p class="tools-panel__sub">The AsyncAPI knowledge base speaks MCP and ships as a PyPI package with the whole vector index bundled — it runs fully on your machine, no API keys, no remote calls. Wire it into your editor, install the Claude Code plugin, or clone the repo and run this whole chat locally.</p>
       </div>
       <div class="tools-grid">
         <div class="snippet">
           <div class="snippet__bar">
-            <span class="snippet__label">Hosted MCP endpoint — .mcp.json</span>
+            <span class="snippet__label">Any MCP client — .mcp.json</span>
             <button class="btn btn--copy" type="button" data-copy="mcpJson">Copy</button>
           </div>
           <pre class="snippet__code"><code id="mcpJson">{
   "mcpServers": {
     "asyncapi-knowledge": {
-      "type": "http",
-      "url": "https://asyncapi-knowledge-mcp.vercel.app/api/mcp"
+      "command": "uvx",
+      "args": ["asyncapi-knowledge-mcp"]
     }
   }
 }</code></pre>
         </div>
         <div class="snippet">
           <div class="snippet__bar">
-            <span class="snippet__label">Run locally via PyPI</span>
+            <span class="snippet__label">Claude Code — one command</span>
             <button class="btn btn--copy" type="button" data-copy="pypiCmd">Copy</button>
           </div>
           <pre class="snippet__code"><code id="pypiCmd">claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp</code></pre>
@@ -94,9 +93,8 @@
           <p>Try asking:</p>
           <div class="empty-state__chips">
             <button class="chip chip--suggest" type="button" data-suggest="What is AsyncAPI and what problems does it solve?">What is AsyncAPI?</button>
-            <button class="chip chip--suggest" type="button" data-suggest="How do I define a channel in AsyncAPI 3.0?">Define a channel in AsyncAPI 3.0</button>
-            <button class="chip chip--suggest" type="button" data-suggest="What are the differences between AsyncAPI 2.x and 3.0?">AsyncAPI 2.x vs 3.0 differences</button>
-            <button class="chip chip--suggest" type="button" data-suggest="How does message schema validation work in AsyncAPI?">Message schema validation</button>
+            <button class="chip chip--suggest" type="button" data-suggest="How do I provide protocol-specific information in AsyncAPI, for example Kafka or MQTT bindings?">Protocol-specific info (bindings)</button>
+            <button class="chip chip--suggest" type="button" data-suggest="Can I use Protobuf or Avro schemas in an AsyncAPI document?">Can I use Protobuf or Avro?</button>
           </div>
         </div>
       </div>
@@ -120,6 +118,61 @@
         </div>
       </form>
     </section>
+
+    <!-- How it's built -->
+    <section class="arch reveal" data-reveal="3" aria-labelledby="archTitle">
+      <h2 class="arch__title" id="archTitle">How it&rsquo;s built</h2>
+      <p class="arch__lede">
+        One knowledge base, three ways to consume it — all open source, rebuilt weekly from the official docs.
+      </p>
+      <div class="arch__grid">
+        <div class="arch-card">
+          <span class="arch-card__step">Sources</span>
+          <h3 class="arch-card__name">Official AsyncAPI content</h3>
+          <p class="arch-card__text">
+            Markdown docs from the <a href="https://github.com/asyncapi/website" target="_blank" rel="noopener">asyncapi/website</a>
+            repo plus the <a href="https://github.com/asyncapi/spec-json-schemas" target="_blank" rel="noopener">AsyncAPI 3.1.0 JSON&nbsp;Schema</a> —
+            fetched, chunked and embedded by
+            <a href="https://github.com/derberg/OpenCrane" target="_blank" rel="noopener">OpenCrane</a> into a vector index.
+          </p>
+        </div>
+        <div class="arch-card">
+          <span class="arch-card__step">This chat</span>
+          <h3 class="arch-card__name">Vercel</h3>
+          <p class="arch-card__text">
+            A static page + two serverless functions: vector search over the committed index,
+            and an agent that answers through the Vercel AI&nbsp;Gateway with citations back to the docs.
+          </p>
+        </div>
+        <div class="arch-card">
+          <span class="arch-card__step">Run it yourself</span>
+          <h3 class="arch-card__name">PyPI · <code>uvx asyncapi-knowledge-mcp</code></h3>
+          <p class="arch-card__text">
+            <code>opencrane pack</code> bundles the prebuilt index into a pip-installable MCP server.
+            Runs entirely on your machine over stdio — no keys, no remote calls.
+          </p>
+        </div>
+        <div class="arch-card">
+          <span class="arch-card__step">Hosted MCP</span>
+          <h3 class="arch-card__name">Hugging Face Space</h3>
+          <p class="arch-card__text">
+            The same server as a public HTTP MCP endpoint in a
+            <a href="https://huggingface.co/spaces/derberg/asyncapi-knowledge-mcp" target="_blank" rel="noopener">Docker Space</a>,
+            searching with a local embedding model — also free of API keys.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support AsyncAPI -->
+    <aside class="sustain reveal" data-reveal="3">
+      <p class="sustain__text">
+        <strong>AsyncAPI</strong> is the industry standard for describing event-driven APIs — created and
+        maintained by people with passion, not by big corporate funding. If it helps you ship better systems,
+        help sustain the project on
+        <a href="https://opencollective.com/asyncapi" target="_blank" rel="noopener">Open&nbsp;Collective</a>.
+      </p>
+    </aside>
   </main>
 
   <footer class="site-footer">
@@ -127,6 +180,8 @@
       <p class="footer__copy">
         MIT License &nbsp;·&nbsp;
         <a href="https://github.com/derberg/asyncapi-knowledge-mcp" target="_blank" rel="noopener">GitHub</a>
+        &nbsp;·&nbsp;
+        built by <a href="https://www.brainfart.dev/" target="_blank" rel="noopener">brainfart.dev</a> with love
       </p>
       <p class="footer__disclaimer">Community project — not an official AsyncAPI Initiative service.</p>
     </div>

@@ -162,17 +162,6 @@ a:hover { color: var(--aa-purple-500); }
   text-decoration: none;
 }
 .logo img { display: block; }
-.logo__suffix {
-  font-family: var(--aa-font-heading);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--aa-purple-300);
-  border-left: 1px solid rgba(255,255,255,0.2);
-  padding-left: 12px;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
 
 .header-nav { display: flex; align-items: center; }
 
@@ -656,6 +645,107 @@ a:hover { color: var(--aa-purple-500); }
 .composer__input::placeholder { color: #a0a0c0; }
 
 /* ============================================================
+   Architecture ("How it's built")
+   ============================================================ */
+.arch {
+  margin: 48px auto 0;
+}
+.arch__title {
+  margin: 0 0 8px;
+  font-family: var(--aa-font-heading);
+  font-size: clamp(1.4rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--aa-dark);
+  text-align: center;
+}
+.arch__lede {
+  margin: 0 auto 26px;
+  max-width: 560px;
+  text-align: center;
+  color: #5a5a7a;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.arch__grid {
+  display: grid;
+  gap: 14px;
+}
+@media (min-width: 720px) {
+  .arch__grid { grid-template-columns: 1fr 1fr; }
+}
+.arch-card {
+  background: #ffffff;
+  border: 1px solid #e8e4f3;
+  border-radius: var(--aa-radius-md);
+  padding: 18px 20px;
+}
+.arch-card__step {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--aa-purple-500);
+  margin-bottom: 6px;
+}
+.arch-card__name {
+  margin: 0 0 6px;
+  font-family: var(--aa-font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--aa-dark);
+}
+.arch-card__name code {
+  font-family: var(--aa-font-mono);
+  font-size: 0.85em;
+  font-weight: 600;
+}
+.arch-card__text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #5a5a7a;
+}
+.arch-card__text a {
+  color: var(--aa-purple-500);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.arch-card__text a:hover { color: var(--aa-purple-600); }
+.arch-card__text code {
+  font-family: var(--aa-font-mono);
+  font-size: 0.85em;
+  background: #f3f0fa;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* ============================================================
+   Sustain AsyncAPI callout
+   ============================================================ */
+.sustain {
+  margin: 28px auto 0;
+  background: linear-gradient(135deg, #f6f3fc 0%, #eef6fb 100%);
+  border: 1px solid #e3dcf4;
+  border-radius: var(--aa-radius-md);
+  padding: 18px 22px;
+}
+.sustain__text {
+  margin: 0;
+  text-align: center;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #4a4a68;
+}
+.sustain__text a {
+  color: var(--aa-purple-500);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sustain__text a:hover { color: var(--aa-purple-600); }
+
+/* ============================================================
    Footer — dark, like header
    ============================================================ */
 .site-footer {
@@ -713,7 +803,6 @@ a:hover { color: var(--aa-purple-500); }
 
   .header-inner { height: 56px; gap: 10px; }
   .logo img { width: 110px; height: 28px; }
-  .logo__suffix { font-size: 12px; padding-left: 8px; }
 
   /* Swap labels */
   .label-full { display: none; }
