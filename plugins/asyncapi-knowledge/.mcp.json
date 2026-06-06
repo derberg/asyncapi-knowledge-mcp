@@ -2,7 +2,7 @@
   "mcpServers": {
     "asyncapi-knowledge": {
       "command": "uvx",
-      "args": ["asyncapi-knowledge-mcp"]
+      "args": ["asyncapi-knowledge-mcp==0.0.2"]
     }
   }
 }

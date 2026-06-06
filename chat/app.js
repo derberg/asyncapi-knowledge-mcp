@@ -32,6 +32,16 @@
     if (open) toolsPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 
+  // The demo-note "run it locally" link opens the tools panel.
+  var demoToolsLink = document.getElementById("demoToolsLink");
+  if (demoToolsLink) {
+    demoToolsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (toolsPanel.hasAttribute("hidden")) toolsToggle.click();
+      else toolsPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+
   // Copy-to-clipboard buttons.
   document.querySelectorAll(".btn--copy").forEach(function (btn) {
     btn.addEventListener("click", function () {

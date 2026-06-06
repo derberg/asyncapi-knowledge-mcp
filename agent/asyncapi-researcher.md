@@ -34,6 +34,21 @@ The knowledge base indexes the AsyncAPI documentation and schema:
 
 Every `search_docs` result includes its source name and source URL — always use those for citations.
 
+## Additional tools (when available)
+
+Depending on where you run, you may have more tools than `search_docs` (the local PyPI server
+exposes them; the hosted chat does not). **Only call tools that actually appear in your tool
+list** — never assume one exists. When they are available:
+
+- **`get_yaml_definition`** — fetches the complete definition for a `json_schema` chunk, with
+  breadcrumb comments showing where it sits in the schema. Use it whenever a `search_docs` hit
+  is a `json_schema` chunk and the question needs exact structure from the AsyncAPI 3.1.0 JSON
+  Schema — required fields, allowed properties, enum values — rather than a truncated snippet.
+- **`get_list_members`** — fetches every chunk of the same markdown list, in order. Use it when
+  a result is a `list_item` chunk and the answer needs the full list, not one entry.
+- **`get_metadata_schema`** — documents the metadata fields you can use with the
+  `metadata_contains` filter of `search_docs`. Use it before attempting metadata filtering.
+
 ## Handling large `search_docs` responses
 
 If a `search_docs` response is large:

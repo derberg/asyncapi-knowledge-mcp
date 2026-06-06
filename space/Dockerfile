@@ -17,9 +17,9 @@ ENV HOME=/home/user \
 WORKDIR /home/user/app
 
 # The package bundles milvus.db + chunks.json and depends on opencrane.
-# Unpinned = each Space rebuild picks up the latest PyPI release. Pin to a
-# specific version (e.g. ==2026.6.7) if you want reproducible builds.
-RUN pip install --no-cache-dir --user asyncapi-knowledge-mcp
+# Pinned on purpose — never install an implicit "latest" (supply-chain risk,
+# unreproducible builds). Bump the pin deliberately when releasing new content.
+RUN pip install --no-cache-dir --user "asyncapi-knowledge-mcp==0.0.2"
 
 COPY --chown=user app.py .
 

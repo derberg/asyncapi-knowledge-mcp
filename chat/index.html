@@ -33,6 +33,11 @@
         Ask questions about the AsyncAPI specification, concepts, and tooling.
         Get answers grounded in the official docs, with sources you can verify.
       </p>
+      <p class="demo-note">
+        <strong>Demo instance</strong> — this hosted chat runs on a shoestring: ~$6/month of Vercel AI
+        credits plus a free, rate-limited Hugging Face deployment. Please don&rsquo;t overuse it — for
+        day-to-day work <a href="#toolsPanel" id="demoToolsLink">run it locally</a>, free and private.
+      </p>
     </section>
 
     <!-- "Use it in your own tools or locally" collapsible panel -->
@@ -51,7 +56,7 @@
   "mcpServers": {
     "asyncapi-knowledge": {
       "command": "uvx",
-      "args": ["asyncapi-knowledge-mcp"]
+      "args": ["asyncapi-knowledge-mcp==0.0.2"]
     }
   }
 }</code></pre>
@@ -61,7 +66,7 @@
             <span class="snippet__label">Claude Code — one command</span>
             <button class="btn btn--copy" type="button" data-copy="pypiCmd">Copy</button>
           </div>
-          <pre class="snippet__code"><code id="pypiCmd">claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp</code></pre>
+          <pre class="snippet__code"><code id="pypiCmd">claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2</code></pre>
         </div>
         <div class="snippet">
           <div class="snippet__bar">
@@ -80,6 +85,12 @@
 ./scripts/run-local.sh</code></pre>
         </div>
       </div>
+      <p class="tools-panel__note">
+        Examples pin a specific version on purpose — check
+        <a href="https://pypi.org/project/asyncapi-knowledge-mcp/" target="_blank" rel="noopener">PyPI</a>
+        for the current release and always pin the one you picked. Never rely on an implicit
+        &ldquo;latest&rdquo;: unpinned installs are a supply-chain risk.
+      </p>
     </section>
 
     <!-- Support AsyncAPI -->

@@ -77,15 +77,19 @@ See [`docs/deploy-vercel.md`](docs/deploy-vercel.md) for one-time setup.
 Prefer running it locally? The knowledge base is also published to PyPI as a
 standalone MCP package (built with `opencrane pack`, refreshed weekly):
 
-    claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp
+    claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.2
 
 or in any MCP client's config:
 
     {
       "mcpServers": {
-        "asyncapi-knowledge": { "type": "stdio", "command": "uvx", "args": ["asyncapi-knowledge-mcp"] }
+        "asyncapi-knowledge": { "type": "stdio", "command": "uvx", "args": ["asyncapi-knowledge-mcp==0.0.2"] }
       }
     }
+
+> Always pin a specific version (check [PyPI](https://pypi.org/project/asyncapi-knowledge-mcp/)
+> for the current release) — never rely on an implicit "latest"; unpinned installs are a
+> supply-chain risk.
 
 ## Claude plugin (asyncapi-knowledge)
 
