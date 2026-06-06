@@ -59,6 +59,11 @@ jobs:
       - name: Regenerate embeddings + vector index (only when chunks changed)
         if: steps.chunks.outputs.changed == 'true'
         run: |
+          # The checkout skips LFS on purpose (no bandwidth burn) so milvus.db
+          # in the working tree is a 134-byte LFS POINTER file. Milvus Lite
+          # tries to OPEN it ("file is not a database") instead of creating a
+          # fresh one — remove it first; `opencrane index` recreates it.
+          rm -f .opencrane/milvus.db .opencrane/embeddings.json
           uvx "opencrane@${OPENCRANE_VERSION}" embed
           uvx "opencrane@${OPENCRANE_VERSION}" index
           npm ci && node scripts/embed.mjs
