@@ -60,3 +60,4 @@ When verifying a claim on behalf of the user or another skill, you MUST flag con
 - **Be concise** — return distilled findings, not raw search results.
 - **Always cite sources** — include the source name + URL for every finding.
 - **Stay on topic** — decline questions unrelated to AsyncAPI.
+- **Fence all code** — wrap every code, YAML, or JSON example in a fenced block with a language tag (e.g. ```` ```yaml ````), never as indented text. This preserves indentation and enables syntax highlighting in the chat UI.

@@ -94,6 +94,93 @@ describe("fenced code blocks", () => {
   });
 });
 
+describe("nested lists", () => {
+  it("nests an indented sub-item inside its parent <li>", () => {
+    const html = md.render("- parent\n  - child\n- parent2");
+    expect(html).toBe(
+      "<ul><li>parent<ul><li>child</li></ul></li><li>parent2</li></ul>"
+    );
+  });
+
+  it("nests multiple levels deep", () => {
+    const html = md.render("- a\n  - b\n    - c");
+    expect(html).toBe(
+      "<ul><li>a<ul><li>b<ul><li>c</li></ul></li></ul></li></ul>"
+    );
+  });
+
+  it("nests an ordered list inside an unordered item", () => {
+    const html = md.render("- a\n  1. one\n  2. two");
+    expect(html).toBe(
+      "<ul><li>a<ol><li>one</li><li>two</li></ol></li></ul>"
+    );
+  });
+
+  it("dedents back to the outer level", () => {
+    const html = md.render("- a\n  - b\n- c");
+    expect(html).toBe("<ul><li>a<ul><li>b</li></ul></li><li>c</li></ul>");
+  });
+
+  it("keeps a flat list flat", () => {
+    expect(md.render("- a\n- b")).toBe("<ul><li>a</li><li>b</li></ul>");
+  });
+});
+
+describe("indented code blocks", () => {
+  const sample = ["Intro", "", "    operations:", "      pingRequest:"].join("\n");
+
+  it("renders a 4-space indented block as <pre><code>", () => {
+    const html = md.render(sample);
+    expect(html).toContain("<pre><code>operations:\n  pingRequest:</code></pre>");
+  });
+
+  it("does not render indented code as a paragraph", () => {
+    const html = md.render(sample);
+    expect(html).not.toContain("<p>operations");
+  });
+
+  it("strips only the first four columns of indentation", () => {
+    const html = md.render("    a\n        b");
+    expect(html).toContain("<pre><code>a\n    b</code></pre>");
+  });
+
+  it("treats a leading tab as code indentation", () => {
+    const html = md.render("\toperations:");
+    expect(html).toContain("<pre><code>operations:</code></pre>");
+  });
+
+  it("does not apply inline transforms inside indented code", () => {
+    const html = md.render("    use `replyTo` and **bold**");
+    expect(html).toContain("<pre><code>use `replyTo` and **bold**</code></pre>");
+    expect(html).not.toContain("<code>replyTo</code>");
+    expect(html).not.toContain("<strong>");
+  });
+
+  it("HTML-escapes indented code content", () => {
+    const html = md.render('    <script>alert("x")</script>');
+    expect(html).not.toContain("<script>");
+    expect(html).toContain("&lt;script&gt;");
+  });
+
+  it("keeps interior blank lines but drops trailing ones", () => {
+    const html = md.render("    a\n\n    b\n\nafter");
+    expect(html).toContain("<pre><code>a\n\nb</code></pre>");
+    expect(html).toContain("<p>after</p>");
+  });
+
+  it("renders indented code that follows a list", () => {
+    const html = md.render("- pattern:\n\n    operations:\n      ping:");
+    expect(html).toContain("<li>pattern:</li>");
+    expect(html).toContain("<pre><code>operations:\n  ping:</code></pre>");
+  });
+
+  it("does not treat a single sub-4-space indent as code", () => {
+    const html = md.render("Intro\n\n  still a paragraph");
+    expect(html).not.toContain("<pre>");
+    expect(html).toContain("still a paragraph");
+  });
+});
+
 describe("existing behavior unchanged", () => {
   it("still renders inline code", () => {
     expect(md.render("use `asyncapi validate`")).toContain("<code>asyncapi validate</code>");
