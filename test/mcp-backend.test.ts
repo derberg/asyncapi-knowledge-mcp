@@ -106,6 +106,34 @@ Duplicate — should be dropped.
     expect(citations[1].url).toBe("https://www.asyncapi.com/docs/tutorials");
   });
 
+  it("deep-links to the section anchor when the block content carries one", () => {
+    const text = `
+Result 1:
+Source: https://www.asyncapi.com/docs/reference/specification/v3.1.0
+Source Name: asyncapi-website
+
+### <a name="runtimeExpression"></a>Runtime Expression
+
+A runtime expression allows values to be defined based on information…
+`.trim();
+    const citations = parseCitations(text);
+    expect(citations).toHaveLength(1);
+    expect(citations[0].url).toBe(
+      "https://www.asyncapi.com/docs/reference/specification/v3.1.0#runtimeExpression"
+    );
+  });
+
+  it("leaves the url untouched when the block has no anchor", () => {
+    const text = `
+Result 1:
+Source: https://www.asyncapi.com/docs/concepts
+Source Name: asyncapi-website
+
+Plain prose, no anchor tag.
+`.trim();
+    expect(parseCitations(text)[0].url).toBe("https://www.asyncapi.com/docs/concepts");
+  });
+
   it("returns empty array for empty string", () => {
     expect(parseCitations("")).toEqual([]);
   });

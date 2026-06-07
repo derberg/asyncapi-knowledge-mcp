@@ -12,9 +12,17 @@ import type { Citation, SearchResult } from "./index.js";
 export function parseCitations(text: string): Citation[] {
   const citations: Citation[] = [];
   for (const block of text.split(/^Result \d+:/m).slice(1)) {
-    const url = block.match(/^Source:\s*(\S+)/m)?.[1];
+    let url = block.match(/^Source:\s*(\S+)/m)?.[1];
     const source_name = block.match(/^Source Name:\s*([^\n]+)/m)?.[1]?.trim();
     if (!url || !source_name) continue;
+    // Deep-link to the section: the reference/specification pages carry an
+    // explicit `<a name="...">` anchor before every heading, but OpenCrane
+    // emits the page-level Source URL. Lift the first anchor in the block onto
+    // the URL so the citation points at the exact section, not the page top.
+    if (!url.includes("#")) {
+      const anchor = block.match(/<a name="([^"]+)"><\/a>/)?.[1];
+      if (anchor) url = `${url}#${anchor}`;
+    }
     citations.push({ url, source_name });
   }
   const seen = new Set<string>();
