@@ -121,8 +121,11 @@
     return n;
   }
 
-  function scrollToEnd() {
-    transcript.scrollTop = transcript.scrollHeight;
+  // The transcript grows with the conversation, so we scroll the page (not an
+  // inner box). Bring a new turn to the top of the viewport so the answer that
+  // appears below it reads from the top.
+  function scrollTurnToTop(wrap) {
+    if (wrap && wrap.scrollIntoView) wrap.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function clearEmptyState() {
@@ -141,7 +144,6 @@
     }
     wrap.appendChild(bubble);
     transcript.appendChild(wrap);
-    scrollToEnd();
     return wrap;
   }
 
@@ -163,7 +165,6 @@
     if (row.children.length) {
       box.appendChild(row);
       parent.appendChild(box);
-      scrollToEnd();
     }
   }
 
@@ -173,7 +174,6 @@
     var bubble = el("div", "msg__bubble msg__bubble--error", message);
     wrap.appendChild(bubble);
     transcript.appendChild(wrap);
-    scrollToEnd();
   }
 
   /* ---------- Staged loader ---------- */
@@ -189,7 +189,6 @@
     bubble.appendChild(label);
     loader.appendChild(bubble);
     transcript.appendChild(loader);
-    scrollToEnd();
 
     var timer = setTimeout(function () {
       label.textContent = "Writing the answer…";
@@ -212,7 +211,8 @@
     if (!question) return;
 
     clearEmptyState();
-    renderMessage("user", question);
+    var userTurn = renderMessage("user", question);
+    scrollTurnToTop(userTurn);
     conversation.push({ role: "user", content: question });
 
     input.value = "";
@@ -269,7 +269,9 @@
       loader.done();
       inFlight = false;
       sendBtn.disabled = false;
-      input.focus();
+      // preventScroll: keep the answer in view (the question is pinned to the
+      // top) instead of jumping the page down to the composer.
+      input.focus({ preventScroll: true });
     }
   }
 

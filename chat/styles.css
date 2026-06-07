@@ -371,14 +371,12 @@ a:hover { color: var(--aa-purple-500); }
 }
 .transcript {
   padding: 28px 26px 8px;
-  max-height: 56vh;
-  max-height: 56dvh;
+  /* Grow with the conversation — no internal scrollbar, no fixed height.
+     The whole section expands and the page (browser) scroll is the only one. */
   min-height: 200px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  scroll-behavior: smooth;
 }
 
 /* Empty state */
@@ -434,6 +432,8 @@ a:hover { color: var(--aa-purple-500); }
      which lets wide code blocks / long tokens override max-width and widen
      the whole transcript (sideways scroll). */
   min-width: 0;
+  /* Offset for the sticky header when a turn is scrolled to the top. */
+  scroll-margin-top: 80px;
   animation: bubble 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes bubble {
@@ -946,28 +946,16 @@ a:hover { color: var(--aa-purple-500); }
   .tools-panel { padding: 18px 14px; border-radius: 12px; }
   .snippet__code { font-size: 12px; padding: 12px; }
 
-  /* overflow:visible lets the composer use position:sticky (an overflow
-     ancestor would otherwise neutralize it). */
-  .chat { border-radius: 14px; overflow: visible; }
-  .transcript {
-    padding: 18px 16px 10px;
-    max-height: 62dvh;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-  }
+  .chat { border-radius: 14px; }
+  /* Like on desktop, the transcript grows with the conversation — no fixed
+     height and no inner scroll; the page (browser) scroll is the only one. */
+  .transcript { padding: 18px 16px 10px; }
   .msg { max-width: 92%; }
   .msg__bubble { font-size: 15px; padding: 11px 14px; line-height: 1.62; }
 
-  /* Pin the composer to the bottom of the screen while the chat is in view,
-     and clear the home indicator so it never sits flush to the device edge. */
+  /* Clear the home indicator so the composer never sits flush to the device edge. */
   .composer {
-    position: sticky;
-    bottom: 0;
-    z-index: 5;
     padding: 12px 14px calc(14px + env(safe-area-inset-bottom));
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px;
-    box-shadow: 0 -6px 16px rgba(27, 17, 48, 0.05);
   }
   .composer__field { padding: 4px 14px; }
 
