@@ -102,6 +102,17 @@
     }, 300);
   });
 
+  // The single-row pill can't show a placeholder that wraps to two lines, so
+  // use a shorter one on narrow screens (the long copy gets clipped otherwise).
+  var narrow = window.matchMedia("(max-width: 560px)");
+  var phPlaceholder = "Ask about AsyncAPI…";
+  var fullPlaceholder = input.getAttribute("placeholder");
+  function setPlaceholder() {
+    input.setAttribute("placeholder", narrow.matches ? phPlaceholder : fullPlaceholder);
+  }
+  setPlaceholder();
+  narrow.addEventListener("change", setPlaceholder);
+
   /* ---------- Rendering ---------- */
   function el(tag, className, text) {
     var n = document.createElement(tag);

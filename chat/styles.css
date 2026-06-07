@@ -784,7 +784,16 @@ a:hover { color: var(--aa-purple-500); }
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
 }
 @media (max-width: 560px) {
-  .sustain { border-radius: var(--aa-radius-md); padding: 10px 14px; }
+  /* Keep it a slim callout, not a heavy panel: tighter padding, smaller type,
+     less vertical weight so it stops dominating the first screen. */
+  .sustain {
+    border-radius: var(--aa-radius-md);
+    padding: 9px 14px;
+    gap: 6px 9px;
+  }
+  .sustain__heart { font-size: 15px; }
+  .sustain__text { font-size: 0.78rem; line-height: 1.4; }
+  .sustain__cta { font-size: 0.76rem; padding: 4px 11px; }
 }
 
 /* Opt-in anonymous question analytics (off by default) */
