@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Bump the bundled MCP package pin to `asyncapi-knowledge-mcp==0.0.4`.
+
 ## 0.2.1
 
 - Bump the bundled MCP package pin to `asyncapi-knowledge-mcp==0.0.3`.

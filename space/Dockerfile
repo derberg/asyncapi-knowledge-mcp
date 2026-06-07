@@ -19,7 +19,7 @@ WORKDIR /home/user/app
 # The package bundles milvus.db + chunks.json and depends on opencrane.
 # Pinned on purpose — never install an implicit "latest" (supply-chain risk,
 # unreproducible builds). Bump the pin deliberately when releasing new content.
-RUN pip install --no-cache-dir --user "asyncapi-knowledge-mcp==0.0.3"
+RUN pip install --no-cache-dir --user "asyncapi-knowledge-mcp==0.0.4"
 
 COPY --chown=user app.py .
 
