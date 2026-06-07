@@ -110,7 +110,13 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-.wrap { width: 100%; max-width: 920px; margin: 0 auto; padding: 0 24px; }
+.wrap {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+}
 
 a { color: var(--aa-purple-600); text-decoration: underline; text-underline-offset: 2px; }
 a:hover { color: var(--aa-purple-500); }
@@ -146,6 +152,7 @@ a:hover { color: var(--aa-purple-500); }
   z-index: 10;
   background: var(--aa-dark);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: env(safe-area-inset-top);
 }
 .header-inner {
   display: flex;
@@ -904,8 +911,14 @@ a:hover { color: var(--aa-purple-500); }
    Small screens ≤ 560px
    ============================================================ */
 @media (max-width: 560px) {
-  .wrap { padding: 0 14px; }
-  .main { padding: 32px 0 24px; }
+  /* 16px gutter, widened to clear notches in landscape */
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  /* Tighter rhythm above the chat so the composer is reachable in one short
+     scroll instead of being buried under the hero + callout. */
+  .main { padding: 22px 0 24px; }
 
   .header-inner { height: 56px; gap: 10px; }
   .logo img { width: 110px; height: 28px; }
@@ -915,20 +928,41 @@ a:hover { color: var(--aa-purple-500); }
   .label-short { display: inline; }
   .btn--tools { padding: 6px 12px; font-size: 12.5px; }
 
-  .hero { margin-bottom: 14px; }
+  .hero { margin-bottom: 12px; }
   .hero__title { font-size: clamp(1.7rem, 8vw, 2rem); }
+  .hero__lede { font-size: 0.92rem; }
+
+  .sustain { margin-bottom: 12px; }
 
   .tools-panel { padding: 18px 14px; border-radius: 12px; }
   .snippet__code { font-size: 12px; padding: 12px; }
 
-  .chat { border-radius: 12px; }
-  .transcript { padding: 20px 14px 6px; }
-  .composer { padding: 10px 12px 14px; }
+  /* overflow:visible lets the composer use position:sticky (an overflow
+     ancestor would otherwise neutralize it). */
+  .chat { border-radius: 14px; overflow: visible; }
+  .transcript {
+    padding: 18px 16px 10px;
+    max-height: 62dvh;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  .msg { max-width: 92%; }
+  .msg__bubble { font-size: 15px; padding: 11px 14px; line-height: 1.62; }
+
+  /* Pin the composer to the bottom of the screen while the chat is in view,
+     and clear the home indicator so it never sits flush to the device edge. */
+  .composer {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    padding: 12px 14px calc(14px + env(safe-area-inset-bottom));
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    box-shadow: 0 -6px 16px rgba(27, 17, 48, 0.05);
+  }
   .composer__field { padding: 4px 14px; }
-  .msg { max-width: 94%; }
-  .msg__bubble { font-size: 14.5px; padding: 10px 13px; }
 
   .citation-chip { max-width: 100%; }
 
-  .site-footer { padding: 20px 0 26px; }
+  .site-footer { padding: 20px 0 calc(26px + env(safe-area-inset-bottom)); }
 }

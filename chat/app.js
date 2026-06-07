@@ -94,6 +94,14 @@
   }
   input.addEventListener("input", autosize);
 
+  // On mobile the composer is sticky to the bottom of the screen; when the
+  // on-screen keyboard opens it can cover the field, so nudge it into view.
+  input.addEventListener("focus", function () {
+    setTimeout(function () {
+      input.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 300);
+  });
+
   /* ---------- Rendering ---------- */
   function el(tag, className, text) {
     var n = document.createElement(tag);
