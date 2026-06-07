@@ -8,7 +8,7 @@ sources:
     docs_url: https://www.asyncapi.com/docs
   asyncapi-json-schema:
     manual: true
-    docs_url: https://github.com/asyncapi/website/blob/master/config/3.1.0.json
+    docs_url: https://github.com/asyncapi/website/blob/master/config
   asyncapi-usecases:
     manual: true
     docs_url: https://www.asyncapi.com/casestudies
