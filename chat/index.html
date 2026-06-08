@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>AsyncAPI Knowledge — ask the docs</title>
   <meta name="description" content="Ask questions about AsyncAPI — spec, concepts, tooling and docs — and get cited answers from asyncapi.com/docs and the AsyncAPI 3.1.0 JSON Schema." />
+  <link rel="canonical" href="https://askasyncapi.brainfart.dev/" />
+
+  <!-- Open Graph / LinkedIn / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ask AsyncAPI" />
+  <meta property="og:url" content="https://askasyncapi.brainfart.dev/" />
+  <meta property="og:title" content="Ask AsyncAPI — cited answers from the docs" />
+  <meta property="og:description" content="Cited answers about the AsyncAPI spec, concepts and tooling — grounded in the official docs, with sources you can verify. Open source and local-first." />
+  <meta property="og:image" content="https://askasyncapi.brainfart.dev/og.png" />
+  <meta property="og:image:width" content="2400" />
+  <meta property="og:image:height" content="1260" />
+  <meta property="og:image:alt" content="Ask AsyncAPI — cited answers about the spec, concepts and tooling, grounded in the official docs." />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ask AsyncAPI — cited answers from the docs" />
+  <meta name="twitter:description" content="Cited answers about the AsyncAPI spec, concepts and tooling — grounded in the official docs. Open source and local-first." />
+  <meta name="twitter:image" content="https://askasyncapi.brainfart.dev/og.png" />
+
   <link rel="preload" href="fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/work-sans-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css" />
@@ -19,7 +38,7 @@
       </a>
       <nav class="header-nav">
         <button class="btn btn--tools" type="button" id="toolsToggle" aria-expanded="false" aria-controls="toolsPanel">
-          <span class="label-full">Use it in your own tools or locally</span><span class="label-short">Tools &amp; local</span>
+          <span class="label-full">Local-First</span><span class="label-short">Local-First</span>
         </button>
       </nav>
     </div>
@@ -34,10 +53,10 @@
       </p>
     </section>
 
-    <!-- "Use it in your own tools or locally" collapsible panel -->
+    <!-- "Local-First" collapsible panel -->
     <section id="toolsPanel" class="tools-panel reveal" data-reveal="2" hidden>
       <div class="tools-panel__head">
-        <h2 class="tools-panel__title">Use it in your own tools locally</h2>
+        <h2 class="tools-panel__title">Local-First</h2>
         <p class="tools-panel__sub">The AsyncAPI knowledge base speaks MCP and ships as a PyPI package with the whole vector index bundled — it runs fully on your machine, no API keys, no remote calls. Wire it into your editor, install the Claude Code plugin, or clone the repo and run this whole chat locally.</p>
       </div>
       <div class="tools-grid">
@@ -204,7 +223,6 @@ claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.4
         &nbsp;·&nbsp;
         built by <a href="https://www.brainfart.dev/" target="_blank" rel="noopener">brainfart.dev</a> with open source <span class="footer__heart" role="img" aria-label="love">💜</span>
       </p>
-      <p class="footer__disclaimer">Community project — not an official AsyncAPI Initiative service.</p>
     </div>
   </footer>
 

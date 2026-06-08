@@ -255,7 +255,9 @@ a:hover { color: var(--aa-purple-500); }
 /* ============================================================
    Main / Hero
    ============================================================ */
-.main { padding: 56px 0 48px; }
+/* Vertical only — horizontal gutter comes from .wrap (this element is
+   `class="wrap main"`, and a `padding` shorthand here would zero it out). */
+.main { padding-block: 56px 48px; }
 .hero {
   text-align: center;
   max-width: 680px;
@@ -785,16 +787,16 @@ a:hover { color: var(--aa-purple-500); }
 }
 @media (max-width: 560px) {
   /* Keep it a slim callout, not a heavy panel: tighter padding, smaller type,
-     less vertical weight so it stops dominating the first screen. A small extra
-     side margin gives the filled block a clear gutter so it never reads as
-     touching the screen edge. The heart stays on the first line of the text
-     (left-aligned) instead of wrapping out onto a line of its own, and the CTA
-     drops to its own full-width row for an easy tap target. */
+     less vertical weight so it stops dominating the first screen. It shares the
+     wrap's 22px gutter with the rest of the content, so the filled block never
+     reads as touching the screen edge. The heart stays on the first line of the
+     text (left-aligned) instead of wrapping out onto a line of its own, and the
+     CTA drops to its own full-width row for an easy tap target. */
   .sustain {
     border-radius: var(--aa-radius-md);
     padding: 10px 14px;
     gap: 7px 9px;
-    margin: 0 6px 12px;
+    margin: 0 0 12px;
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
@@ -916,11 +918,6 @@ a:hover { color: var(--aa-purple-500); }
 }
 .footer__copy a:hover { color: var(--aa-cyan-600); }
 .footer__heart { font-size: 1em; vertical-align: -0.05em; }
-.footer__disclaimer {
-  margin: 0;
-  font-size: 12px;
-  color: rgba(156, 150, 168, 0.7);
-}
 
 /* ============================================================
    Reduced motion
@@ -942,14 +939,15 @@ a:hover { color: var(--aa-purple-500); }
    Small screens ≤ 560px
    ============================================================ */
 @media (max-width: 560px) {
-  /* 16px gutter, widened to clear notches in landscape */
+  /* 22px gutter so no content or filled component sits flush to the screen
+     edge; widened to clear notches in landscape. */
   .wrap {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
+    padding-left: max(22px, env(safe-area-inset-left));
+    padding-right: max(22px, env(safe-area-inset-right));
   }
   /* Tighter rhythm above the chat so the composer is reachable in one short
      scroll instead of being buried under the hero + callout. */
-  .main { padding: 22px 0 24px; }
+  .main { padding-block: 22px 24px; }
 
   .header-inner { height: 56px; gap: 10px; }
   .logo img { width: 110px; height: 28px; }
