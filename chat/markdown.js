@@ -67,6 +67,16 @@
   }
 
   function render(md) {
+    // Models often wrap a long link so the URL lands on the next line:
+    //   [label](
+    //   https://example.com/very/long/path)
+    // The renderer is line-based, so that splits into an unterminated "[label]("
+    // and a bare autolink. Reunite them: drop whitespace (incl. newlines) right
+    // after "](" when an http URL follows, and right before the closing ")".
+    md = String(md)
+      .replace(/\]\(\s+(?=https?:\/\/)/g, "](")
+      .replace(/(\]\(https?:\/\/[^\s)]+)\s+\)/g, "$1)");
+
     var html = [];
     var para = [];
     var listRoot = null; // root list frame: { type, indent, items: [{text, sub}] }

@@ -181,6 +181,40 @@ describe("indented code blocks", () => {
   });
 });
 
+describe("links wrapped across lines", () => {
+  it("reunites a link whose URL was wrapped onto the next line", () => {
+    const html = md.render(
+      "- Stay informed: [Governance principles / duties](\nhttps://www.asyncapi.com/docs/community/020-governance-and-policies/TSC_MEMBERSHIP)"
+    );
+    expect(html).toContain(
+      '<a href="https://www.asyncapi.com/docs/community/020-governance-and-policies/TSC_MEMBERSHIP"'
+    );
+    expect(html).toContain(">Governance principles / duties</a>");
+    // no leftover literal "](" and no stray autolink line
+    expect(html).not.toContain("](");
+    expect(html).not.toContain("<p>https://");
+  });
+
+  it("handles a closing paren wrapped onto the next line", () => {
+    const html = md.render("[foo](https://example.com/path\n) tail");
+    expect(html).toContain('<a href="https://example.com/path"');
+    expect(html).toContain(">foo</a>");
+    expect(html).toContain("tail");
+  });
+
+  it("leaves an inline link untouched", () => {
+    const html = md.render(
+      "see [TSC](https://www.asyncapi.com/docs/community/020-governance-and-policies/TSC_MEMBERSHIP) now"
+    );
+    expect(html).toContain(">TSC</a>");
+  });
+
+  it("does not collapse non-link parens", () => {
+    const html = md.render("array[0]( not a url ) stays");
+    expect(html).toContain("array[0]( not a url ) stays");
+  });
+});
+
 describe("existing behavior unchanged", () => {
   it("still renders inline code", () => {
     expect(md.render("use `asyncapi validate`")).toContain("<code>asyncapi validate</code>");
