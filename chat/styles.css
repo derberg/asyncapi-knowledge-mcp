@@ -629,7 +629,7 @@ a:hover { color: var(--aa-purple-500); }
 }
 .composer__row {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 10px;
 }
 .composer__field {
@@ -796,11 +796,16 @@ a:hover { color: var(--aa-purple-500); }
     gap: 7px 9px;
     margin: 0 6px 12px;
     justify-content: flex-start;
+    align-items: flex-start;
     text-align: left;
   }
-  .sustain__heart { font-size: 15px; }
+  .sustain__heart { font-size: 15px; line-height: 1.4; }
   .sustain__text {
-    flex: 1 1 auto;
+    /* flex-basis 0 (not auto) so the wrap calc treats the text as zero-width and
+       keeps it on the same flex line as the heart; it then grows to fill and
+       wraps its own words. With auto basis the full sentence width forces the
+       text onto its own line, stranding the heart. */
+    flex: 1 1 0;
     min-width: 0;
     font-size: 0.78rem;
     line-height: 1.4;
