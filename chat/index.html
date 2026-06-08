@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>AsyncAPI Knowledge — ask the docs</title>
-  <meta name="description" content="Ask questions about AsyncAPI — spec, concepts, tooling and docs — and get cited answers from asyncapi.com/docs and the AsyncAPI 3.1.0 JSON Schema." />
+  <meta name="description" content="Ask questions about AsyncAPI — spec, concepts, tooling, docs and community — and get cited answers from asyncapi.com/docs and the AsyncAPI 3.1.0 JSON Schema." />
   <link rel="canonical" href="https://askasyncapi.brainfart.dev/" />
 
   <!-- Open Graph / LinkedIn / Facebook -->
@@ -12,16 +12,16 @@
   <meta property="og:site_name" content="Ask AsyncAPI" />
   <meta property="og:url" content="https://askasyncapi.brainfart.dev/" />
   <meta property="og:title" content="Ask AsyncAPI — cited answers from the docs" />
-  <meta property="og:description" content="Cited answers about the AsyncAPI spec, concepts and tooling — grounded in the official docs, with sources you can verify. Open source and local-first." />
+  <meta property="og:description" content="Cited answers about the AsyncAPI spec, concepts, tooling and community — grounded in the official docs, with sources you can verify. Open source and local-first." />
   <meta property="og:image" content="https://askasyncapi.brainfart.dev/og.png" />
   <meta property="og:image:width" content="2400" />
   <meta property="og:image:height" content="1260" />
-  <meta property="og:image:alt" content="Ask AsyncAPI — cited answers about the spec, concepts and tooling, grounded in the official docs." />
+  <meta property="og:image:alt" content="Ask AsyncAPI — cited answers about the spec, concepts, tooling and community, grounded in the official docs." />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ask AsyncAPI — cited answers from the docs" />
-  <meta name="twitter:description" content="Cited answers about the AsyncAPI spec, concepts and tooling — grounded in the official docs. Open source and local-first." />
+  <meta name="twitter:description" content="Cited answers about the AsyncAPI spec, concepts, tooling and community — grounded in the official docs. Open source and local-first." />
   <meta name="twitter:image" content="https://askasyncapi.brainfart.dev/og.png" />
 
   <link rel="preload" href="fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -48,8 +48,8 @@
     <section class="hero reveal" data-reveal="2">
       <h1 class="hero__title">Ask <span class="hero__gradient">AsyncAPI</span></h1>
       <p class="hero__lede">
-        Answers about the AsyncAPI spec, concepts, and tooling — grounded in the
-        official docs, with sources you can verify.
+        Answers about the AsyncAPI spec, concepts, tooling, and community — grounded
+        in the official docs, with sources you can verify.
       </p>
     </section>
 
@@ -126,7 +126,7 @@ claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.4
           <div class="empty-state__chips">
             <button class="chip chip--suggest" type="button" data-suggest="What is AsyncAPI and what problems does it solve?">What is AsyncAPI?</button>
             <button class="chip chip--suggest" type="button" data-suggest="How do I provide protocol-specific information in AsyncAPI, for example Kafka or MQTT bindings?">Protocol-specific info (bindings)</button>
-            <button class="chip chip--suggest" type="button" data-suggest="Can I use Protobuf or Avro schemas in an AsyncAPI document?">Can I use Protobuf or Avro?</button>
+            <button class="chip chip--suggest" type="button" data-suggest="How can I get involved in the AsyncAPI community and start contributing?">How do I get involved?</button>
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@ claude mcp add asyncapi-knowledge -- uvx asyncapi-knowledge-mcp==0.0.4
         </div>
         <div class="arch-card">
           <span class="arch-card__step">Run it yourself</span>
-          <h3 class="arch-card__name">PyPI · <code>uvx asyncapi-knowledge-mcp</code></h3>
+          <h3 class="arch-card__name"><a href="https://pypi.org/project/asyncapi-knowledge-mcp/" target="_blank" rel="noopener">PyPI</a> · <code>uvx asyncapi-knowledge-mcp</code></h3>
           <p class="arch-card__text">
             <code>opencrane pack</code> bundles the prebuilt index into a pip-installable MCP server.
             Runs entirely on your machine over stdio — no keys, no remote calls.
