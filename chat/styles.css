@@ -640,7 +640,10 @@ a:hover { color: var(--aa-purple-500); }
   align-items: flex-end;
   background: #ffffff;
   border: 1.5px solid #d8d0f0;
-  border-radius: var(--aa-radius-pill);
+  /* A fixed radius (not a pill): a single line still reads nicely rounded, but
+     as the textarea grows to multiple lines it stays a clean rounded rectangle
+     instead of ballooning into a tall lozenge. */
+  border-radius: 22px;
   padding: 5px 18px;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
@@ -661,7 +664,17 @@ a:hover { color: var(--aa-purple-500); }
   padding: 10px 0;
   max-height: 160px;
   outline: none;
+  /* Slim, theme-tinted scrollbar once the text overflows, instead of the heavy
+     default bar pressing against the rounded edge. */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 81, 251, 0.35) transparent;
 }
+.composer__input::-webkit-scrollbar { width: 6px; }
+.composer__input::-webkit-scrollbar-thumb {
+  background: rgba(136, 81, 251, 0.35);
+  border-radius: 3px;
+}
+.composer__input::-webkit-scrollbar-track { background: transparent; }
 .composer__input::placeholder { color: #a0a0c0; }
 
 /* ============================================================
