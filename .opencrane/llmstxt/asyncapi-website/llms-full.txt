@@ -3367,8 +3367,8 @@ title: Charter
 weight: 10
 ---
 
-<p className="text-center text-gray-900 dark:text-white font-bold">Technical Charter (the “Charter”)</p>
-<p className="text-center text-gray-700 dark:text-dark-text">
+<p align="center"><strong>Technical Charter (the “Charter”)</strong></p>
+<p align="center">
   for<br />
   AsyncAPI Project a Series of LF Projects, LLC<br />
   Adopted 03-19-2021, Amended 05-05-2025
@@ -8355,17 +8355,27 @@ description: This overview page outlines the AsyncAPI Maintainership Program Bud
 weight: 190
 ---
 
-Piloting an in-house mentorship program, such as the AsyncAPI Maintainership Program, involves thoughtful financial planning. Thanks to generous donations through our [Open Collective](https://opencollective.com/asyncapi), the AsyncAPI Initiative has been able to allocate a fixed portion of its annual funds to support this program.
+Piloting an in-house mentorship program like the AsyncAPI Maintainership Program involves thoughtful financial planning. The program is designed to run in two modes depending on the Initiative's yearly financial standing: 
 
-To ensure long-term sustainability, transparency, and impact, we annually evaluate our budget to determine the number of projects we can support, which includes providing fair stipends for contributors, recognizing mentor efforts, and covering essential administrative costs.
+- **Funded Cohort**: Where the AsyncAPI Initiative allocates a portion of its annual budget to support the program.
 
-We’ve also created a dedicated [**Open Collective page**](https://opencollective.com/asyncapi/projects/asyncapi-mentorship) specifically for the Maintainership Program. This helps organizers easily manage and track program-specific expenses while keeping them loosely coupled from the broader Initiative’s finances.
+- **Volunteer Cohort**: Where the program runs entirely on community goodwill with no stipends or honorariums.
+
+Thanks to generous donations through our [Open Collective](https://opencollective.com/asyncapi), a funded cohort *may* be possible in a given year — but it is not guaranteed. Whether there's a budget or not, the program runs.
+
+We've also created a dedicated [**Open Collective page**](https://opencollective.com/asyncapi/projects/asyncapi-mentorship) specifically for the Maintainership Program. This helps organizers easily manage and track program-specific expenses while keeping them loosely coupled from the broader Initiative's finances.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Budget Overview
 
-Each project accepted into the AsyncAPI Maintainership Program is funded with a **fixed $2,000 budget**, designed to fairly support both contributors and mentors. Whether a project is led by one contributor or a small team, the budget remains consistent to encourage scope discipline, collaboration, and resource sharing.
+Each year, before a new cohort is announced, the Initiative evaluates its finances to determine whether a funded cohort is feasible. If a budget is available, it is allocated to the program. If not, the cohort runs in a volunteer mode.
 
-### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Cost Breakdown (Per Project)
+> _There is no guaranteed annual budget for the Maintainership Program. Budget availability depends entirely on the Initiative's financial position for that year._
+
+### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Funded Cohort
+
+When there's a budget, each project accepted into the program is funded with a **fixed $2,000 budget**, designed to fairly support both contributors and mentors. Whether a project is led by one contributor or a small team, the budget remains consistent to encourage scope discipline, collaboration, and resource sharing.
+
+#### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Cost Breakdown (Per Project)
 
 | **Expense Item**                | **Amount (USD)** | **Notes**                                                                   |
 | ------------------------------- | ---------------- | --------------------------------------------------------------------------- |
@@ -8373,11 +8383,11 @@ Each project accepted into the AsyncAPI Maintainership Program is funded with a 
 | Mentor Recognition / Honorarium | $500             | Given to the lead mentor (or split between multiple mentors if applicable). |
 | **Total Per Project**           | **$2,000**       |                                                                             |
 
- > _If a project has two contributors, each will receive $750. If three, each receives $500, and so on. Mentor funds are fixed per project regardless of team size._
+> _If a project has two contributors, each will receive $750. If three, each receives $500, and so on. Mentor funds are fixed per project regardless of team size._
 
-### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Annual Cohort Budget Projection
+#### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Annual Cohort Budget Projection
 
-The number of project slots we support each year depends entirely on our available funding. For example, with a **$16,000 annual budget**, we can support up to **8 projects**:
+The number of project slots we support in a funded cohort depends entirely on available funding. For example, with a **$16,000 annual budget**, we can support up to **8 projects**:
 
 | **Item**                | **Per Project** | **Total (8 Projects)** |
 | ----------------------- | --------------- | ---------------------- |
@@ -8385,9 +8395,13 @@ The number of project slots we support each year depends entirely on our availab
 | Mentor Honorariums      | $500            | $4,000                 |
 | **Total Budget Needed** | —               | **$16,000**            |
 
-> _Note: Actual project slots may vary from year to year depending on the total funds raised and community needs._
+> _Actual project slots vary year to year depending on total funds raised and community needs._
 
-This model allows us to scale based on financial support, ensuring every accepted project receives fair and consistent financial backing.
+### https://www.asyncapi.com/docs/community/maintainership-guide/amp-budget Volunteer Cohort
+
+When no budget is available, the program runs as a volunteer edition. Contributors and mentors participate without financial compensation. The structure, expectations, and community support remain the same, only the stipends are absent.
+
+This model ensures the program can continue regardless of the Initiative's financial position in any given year.
 
 -----
 
@@ -8467,10 +8481,10 @@ Slack is the main platform for real-time communication during the program. Once 
 
 Key channels include:
 
-- **#mentorships** – Program-wide updates, announcements, and shared resources.
-- **#maintainership-[year]-cohort** – Dedicated support channel for contributors to ask questions and seek guidance.
-- **#maintainership-[year]-mentors** – Mentor-only space for coordination, shared tips, and updates.
-- **Direct Messages (DMs)** – For private, one-on-one conversations with mentors, mentees, or program organizers.
+- **#mentorships**: Program-wide updates, announcements, and shared resources.
+- **#maintainership-[year]-cohort**: Dedicated support channel for contributors to ask questions and seek guidance.
+- **#maintainership-[year]-mentors**: Mentor-only space for coordination, shared tips, and updates.
+- **Direct Messages (DMs)**: For private, one-on-one conversations with mentors, mentees, or program organizers.
 
  _Please stay responsive to messages and maintain timely communication._
 
@@ -8478,14 +8492,14 @@ Key channels include:
 
 GitHub is the primary platform for managing and tracking project work.
 
-- **Repositories** – Each project will have a dedicated GitHub repository for code, issues, and pull requests.
-- **GitHub Discussions** – Used by program organizers to share updates, request feedback, announce planning decisions, and collect project ideas.
+- **Repositories**: Each project will have a dedicated GitHub repository for code, issues, and pull requests.
+- **GitHub Discussions**: Used by program organizers to share updates, request feedback, announce planning decisions, and collect project ideas.
 
 _Contributors must follow contribution guidelines and use clear, descriptive messages._
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-communications Email
 
-All official communications from the AMP team — including evaluation reminders, key deadlines, and other important announcements — will be sent via email.
+All official communications from the AMP team, including evaluation reminders, key deadlines, and other important announcements will be sent via email.
 
 _Be sure to check your inbox regularly and avoid missing critical updates from the program organizers._
 
@@ -8578,10 +8592,10 @@ During this phase, contributor applications are reviewed collaboratively by prog
   - Applicants with **no prior** open-source contribution history
   - Proposals that are **misaligned** or **unrelated** to any project idea
 
-- **Mentor Review**: 
+- **Mentor Review**:
     Applications that pass the initial screening are forwarded to the appropriate mentors. Mentors assess each submission based on its alignment with the project’s scope, clarity, feasibility, and the applicant’s relevant experience.
 
-- **Shortlisting Candidates:** 
+- **Shortlisting Candidates**: 
     Based on their evaluations, mentors can submit a shortlist of up to **three preferred contributors** per project to the program organizers for final consideration in the next phase (contribution period).
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-contributor-application-review-process Final Application Phase
@@ -8593,16 +8607,16 @@ This phase serves as the final review stage, where mentors evaluate contributors
 
 Mentors will assess the following criteria during the final application review:
 
-- **Communication:**  
+- **Communication**:  
     Contributors are evaluated on their responsiveness, clarity, and professionalism in communication throughout the contribution phase.
 
-- **Project Understanding:**  
+- **Project Understanding**:  
     Mentors assess how well contributors understood the project’s goals and requirements, as demonstrated through their questions, discussions, and submitted work.
 
-- **Quality of Contributions:**  
+- **Quality of Contributions**:  
     The relevance, completeness, and quality of contributions such as **PRs**, **documentation**, or **research** will be closely reviewed to evaluate the contributor’s technical capability.
 
-- **Collaboration & Conduct:**  
+- **Collaboration & Conduct**:  
     Emphasis is placed on how well contributors interacted with mentors and the community, respecting collaboration norms and the Code of Conduct.
 
 -----
@@ -8643,7 +8657,7 @@ AMP is a launchpad. Many alumni have gone on to secure internships, full-time ro
 
 - **Attend meetings**: Join scheduled calls on time and respect your mentor’s time.
 
-- **Ask questions**: Curiosity shows engagement — there are no “dumb” questions.
+- **Ask questions**: Curiosity shows engagement; there are no “dumb” questions.
 
 - **Give updates**: Share progress weekly or bi-weekly, even if it’s small.
 
@@ -8892,7 +8906,7 @@ The form takes roughly **10–15 minutes** to fill out and includes questions re
 - Passing or failing mentor or contributor
 - Quality of program organization
 
-After the evaluation window closes, you’ll receive an email from the organizers with your result — pass or fail.
+After the evaluation window closes, you’ll receive an email from the organizers with your result, pass or fail.
 
 >_Submitting your evaluation is **mandatory**. Failure to complete it during any phase will result in immediate removal from the program and loss of stipend eligibility._
 
@@ -8945,7 +8959,9 @@ We welcome participants from all over the world, especially those passionate abo
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-faq Do mentees receive a stipend?
 
-Yes. Selected mentees will receive a stipend for completing their project. The exact amount may vary depending on available funding and project scope.
+It depends on the cohort. In a **funded cohort**, selected mentees receive a stipend for completing their project. In a **volunteer cohort**, no stipend is provided; participation is purely community-driven.
+
+The cohort type is always announced before applications open, so you'll know upfront what to expect.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-faq What kind of projects will I work on?
 
@@ -8969,7 +8985,9 @@ Mentees are selected based on:
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-faq Are mentors paid?
 
-AMP mentors are dedicated volunteers from the AsyncAPI community. While they receive a $500 stipend per project as a token of appreciation, their primary reward is the opportunity to support emerging maintainers and be publicly recognized for their impact on the community.
+AMP mentors are dedicated volunteers from the AsyncAPI community. In a **funded cohort**, mentors receive a $500 stipend per project as a token of appreciation. In a **volunteer cohort**, no stipend is provided.
+
+Either way, mentors are publicly recognized for their impact, and their primary reward remains the opportunity to support the next generation of AsyncAPI maintainers.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-faq Do I need to be a student to participate?
 
@@ -8979,9 +8997,9 @@ No. While students are encouraged to apply, **you do not need to be enrolled in 
 
 Communication happens primarily through:
 
-- **Slack** – `#mentorships` and cohort-specific channels
-- **GitHub** – for project collaboration and discussions
-- **Email** – for formal updates and reminders
+- **Slack:** `#mentorships` and cohort-specific channels
+- **GitHub:** For project collaboration and discussions
+- **Email:** For formal updates and reminders
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-faq Where can I find the list of available projects?
 
@@ -9198,7 +9216,7 @@ Effective mentorship is a two-way street. Feedback helps contributors grow, but 
 - Nominate exceptional contributors for community shout-outs and potential future roles, such as triagers and maintainers. 
 
 
-> **Note:** If AsyncAPI reasonably believes that a Mentor still needs to meet the primary responsibilities, AsyncAPI may require the Program Administrators to designate a replacement Mentor and remove the former Mentor from the Program.
+> **Note**: If AsyncAPI reasonably believes that a Mentor still needs to meet the primary responsibilities, AsyncAPI may require the Program Administrators to designate a replacement Mentor and remove the former Mentor from the Program.
 
 -----
 
@@ -9349,7 +9367,7 @@ weight: 210
 
 >_AMP participants may receive stipends from AsyncAPI at AsyncAPI's sole discretion; these stipends are not adjusted for cost of living. All participants will receive equal stipend amounts during program participation._
 
-The **AsyncAPI Maintainership Program (AMP)** offers stipends as a token of appreciation for the time and effort invested by contributors and mentors. These stipends are disbursed upon successful completion of the project.
+The **AsyncAPI Maintainership Program (AMP)** may offer stipends as a token of appreciation for the time and effort invested by contributors and mentors. These stipends are disbursed upon successful completion of the project.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-disbursement Contributor Stipends
 
@@ -9398,33 +9416,37 @@ title: Stipend Eligibility
 weight: 200
 ---
 
->_AMP participants may receive stipends from AsyncAPI at AsyncAPI's sole discretion; these stipends are not adjusted for cost of living. All participants will receive equal stipend amounts during program participation._
+> _Stipends are only available during funded cohorts. Whether a cohort is funded or volunteer-based is announced before applications open each year._
 
-The AMP provides stipends to recognize the time, effort, and impact of contributors and mentors who fulfill program requirements and demonstrate commitment throughout the program.
+The AMP provides stipends to recognize the time, effort, and impact of contributors and mentors who fulfill program requirements and demonstrate commitment throughout the program. **Stipends are only disbursed in years where a budget has been allocated to the program.** In volunteer cohorts, no financial compensation is provided; participation is entirely community-driven.
 
-## https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-eligibility Eligibility for Contributors
+> _AMP participants may receive stipends from AsyncAPI at AsyncAPI's sole discretion; these stipends are not adjusted for cost of living. All participants will receive equal stipend amounts during program participation._
+
+## https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-eligibility Eligibility for Stipends
+
+The following eligibility criteria apply to **funded cohorts only**. If you are participating in a volunteer cohort, these requirements still reflect the standard of commitment expected, but no stipend evaluation will occur.
+
+### https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-eligibility Contributors
 
 To qualify for stipend payments as a contributor, you must:
 
 - Be officially **accepted** into the AMP
-
 - Successfully complete both **midterm and final evaluations** conducted by your mentor
-
 - Maintain **regular communication** with your mentor and actively engage in check-ins
-
 - Submit all **key deliverables** (project proposal, code/documentation, final project report) by the required deadlines
-
 - Consistently adhere to the **AsyncAPI Code of Conduct** and contribution guidelines
 
-## https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-eligibility Eligibility for Mentors
+### https://www.asyncapi.com/docs/community/maintainership-guide/amp-payments-eligibility Mentors
 
 To qualify for stipend payment as a mentor, you must:
 
 - Complete both **midterm and final evaluations** for your assigned contributor
-  
 - Provide meaningful guidance, feedback, and support throughout the program
-
 - Demonstrate alignment with the **Code of Conduct** and uphold the standards of the AsyncAPI community
+
+---
+
+> _Volunteer cohort participants are encouraged to treat these criteria as a guide for program integrity, even without financial stakes. The same standards of quality and commitment are expected regardless of cohort type._
 
 -----
 
@@ -9490,53 +9512,53 @@ The AsyncAPI Maintainership Program is actively seeking mission-aligned partners
 
 ### https://www.asyncapi.com/docs/community/maintainership-guide/amp-sponsorship-secure-sponsorship For Organizations
 
-**Direct Sponsorship:**
+**Direct Sponsorship**:
 Sponsor one or more project slots. Each slot costs $2,000 and directly funds a contributor’s learning journey.
 
-**Custom Partnerships:**
+**Custom Partnerships**:
 Collaborate with us on curated program content, gain community visibility, and enjoy opportunities for brand-aligned speaking engagements.
 
-**Internship Pathways:**
+**Internship Pathways**:
 Offer internship placements to our contributors, giving them real-world experience while tapping into motivated, open-source talent.
 
-**In-Kind Contributions:**
+**In-Kind Contributions**:
 Contribute mentors from your team, sponsor event swag, or provide tools and resources to enrich the learning experience.
 
 ### https://www.asyncapi.com/docs/community/maintainership-guide/amp-sponsorship-secure-sponsorship For Individuals
 
-**One-Time or Recurring Donations:**
+**One-Time or Recurring Donations**:
 Every contribution, big or small, directly supports contributor stipends and mentor honorariums. Your support helps make open-source mentorship more accessible and equitable.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-sponsorship-secure-sponsorship Key Benefits for Sponsors
 
-Sponsorship isn’t just about giving — it’s about growing together. Here's what you gain by partnering with us:
+Sponsorship isn’t just about giving, it’s about growing together. Here's what you gain by partnering with us:
 
-**Brand Visibility:**
+**Brand Visibility**:
 
 - Your logo featured on our website, maintainership blog posts, newsletters, and livestream events.
 - Recognition at community calls, conferences, and AsyncAPI-hosted webinars.
 - Inclusion in contributor spotlight posts and public showcases.
 
-**Targeted Developer Engagement:**
+**Targeted Developer Engagement**:
 
 - Connect with a vibrant community of over 7,000+ developers working at the intersection of APIs, systems, and real-world challenges.
 - Position your brand in front of developers who care deeply about impact, innovation, and contribution.
  
-**Social Impact:**
+**Social Impact**:
 
 - Demonstrate your commitment to diversity, equity, and inclusion in tech.
 - Actively support a more accessible and sustainable open-source ecosystem.
 
-**Talent Pipeline Access:**
+**Talent Pipeline Access**:
 
 - Build relationships with up-and-coming contributors trained through hands-on, project-based learning by project maintainers.
 - Engage with developers who may already be aligned with your tools, technologies, and mission.
 
 ## https://www.asyncapi.com/docs/community/maintainership-guide/amp-sponsorship-secure-sponsorship Ready to Get Involved?
 
-**Email us:** community@asyncapi.io
+**Email us**: community@asyncapi.io
 
-**Sponsor via Open Collective:** Visit our AsyncAPI Open Collective and select the Maintainership Program fund.
+**Sponsor via Open Collective**: Visit our AsyncAPI Open Collective and select the Maintainership Program fund.
 
 Sponsorship is an investment in people, purpose, and the future of open-source. Thank you for considering joining us on this journey.
 
@@ -9582,7 +9604,7 @@ By sponsoring the AsyncAPI Maintainership Program, you’re investing in open-so
 
 - **Global & Inclusive Participation**: With your support, we can reach underrepresented and underserved contributors across the globe, breaking down financial and geographic barriers.
 
-Your sponsorship helps maintain a program that’s inclusive, sustainable, and high-impact—for contributors, mentors, and the broader open-source ecosystem.
+Your sponsorship helps maintain a program that’s inclusive, sustainable, and high-impact for contributors, mentors, and the broader open-source ecosystem.
 
 Let’s build the future of open-source together.
 
@@ -9598,99 +9620,84 @@ weight: 220
 
 The **AsyncAPI Maintainership Program** is an 18-week annual mentorship initiative that kicks off every summer. It follows a carefully structured timeline designed to foster steady growth, hands-on experience, and long-term mentorship that empowers contributors to become maintainers.
  
-Here’s the general timeline for each yearly cohort:
+Here's the general timeline for each yearly cohort:
 
-| **Phase**                            | **Timing**      | **Description**                                                                                                                                               |
-| ------------------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Program Announcement**             | Early July      | Official program details are published, including goals, structure, and participation guidelines.                                                             |
-| **Call for Mentors & Project Ideas** | Mid July        | Maintainers and prospective mentors submit project proposals and express interest in mentoring, explaining the value of their projects for the program.       |
-| **Mentor & Project Selection**       | End of July     | Selected mentors are notified. Access to onboarding resources and maintainership support materials is provided.                                               |
-| **Contributor Applications Open**    | End of July     | Applications open for contributors to express interest, explore available projects, and begin required tasks (e.g., submitting a draft PR or proposal).       |
-| **Application Deadline**             | Early August    | Final deadline for contributors to submit their applications and complete the required tasks for their selected project.                                      |
-| **Contribution Period**              | Mid August      | Approved contributors will advance to the Contribution Phase, where they’ll begin working on the task list provided by their assigned mentor.                 |
-| **Contributors Announced**           | End of August   | Selected contributors are notified and onboarded into the program. Slack channels, project resources, and kickoff materials are shared.                       |
-| **Program Begins**                   | Early September | The mentorship officially starts. Contributors and mentors align on goals, expectations, and contribution plans for the cohort.                               |
-| **Program Ends**                     | End of December | Contributors finalize and present their work. Mentors provide detailed feedback and discuss potential paths for continued involvement.                        |
-| **Graduation & Recognition**         | Early January   | Contributors who successfully complete the program are celebrated with certificates, social spotlights, and future recommendations for roles within AsyncAPI. |
+| **Phase**                            | **Timing**       | **Description**                                                                                                                                               |
+| ------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Program Announcement**             | Early February   | Official program details are published, including goals, structure, and participation guidelines.                                                             |
+| **Call for Mentors & Project Ideas** | Mid March        | Maintainers and prospective mentors submit project proposals and express interest in mentoring, explaining the value of their projects for the program.       |
+| **Mentor & Project Selection**       | End of April     | Selected mentors are notified. Access to onboarding resources and maintainership support materials is provided.                                               |
+| **Contributor Applications Open**    | Early May        | Applications open for contributors to express interest, explore available projects, and begin required tasks (e.g., submitting a draft PR or proposal).       |
+| **Application Deadline**             | End of May       | Final deadline for contributors to submit their applications and complete the required tasks for their selected project.                                       |
+| **Contributors Announced**           | Early June       | Selected contributors are notified and onboarded into the program. Slack channels, project resources, and kickoff materials are shared.                       |
+| **Program Begins**                   | Mid June         | The mentorship officially starts. Contributors and mentors align on goals, expectations, and contribution plans for the cohort.                               |
+| **Program Ends**                     | Mid October      | Contributors finalize and present their work. Mentors provide detailed feedback and discuss potential paths for continued involvement.                        |
+| **Graduation & Recognition**         | Late October     | Contributors who successfully complete the program are celebrated with certificates, social spotlights, and future recommendations for roles within AsyncAPI. |
 
-## https://www.asyncapi.com/docs/community/maintainership-guide/amp-timeline-and-schedule Timeline details
+## https://www.asyncapi.com/docs/community/maintainership-guide/amp-timeline-and-schedule Timeline Details
 
 Below is a detailed breakdown of the AsyncAPI Maintainership Program timeline. Each phase is carefully designed to ensure transparency, fairness, and a high-impact learning experience for everyone involved.
 
-**Program announcement period — [July 1-7]:**
+**Program Announcement Period — [February 1]**
 
+- Program coordinators publish official program details, including goals, structure, and participation guidelines.
 - Program coordinators begin volunteer outreach.
-- Program organizers begin the process of securing sponsorships to support  contributor stipends and program operations.
-- A breakdown of the yearly budget is shared to determine the number of contributor slots.
-   
-**Call for mentors & project proposals period — [July 8 - 22]:**
 
-- Mentors sign up to participate by submitting their interest form.
+**Call for Mentors & Project Proposals Period — [March 10 - April 30]:**
+
+- Mentors sign up to participate by joining the program discussion.
 - Program organizers actively reach out to potential mentors and past participants.
-- New mentors are reviewed for eligibility and alignment with the program values.
+- New mentors are reviewed for eligibility and alignment with program values.
 - Mentors propose project ideas.
-- Selected mentors attend a short onboarding session to align expectations.
-- Selected mentors list tasks for contributors to work on during the Contribution Period.
 - Program organizers review projects and approve or reject them.
- 
-**Contributor Application Period — [July 24 - August 7]:**
+- Selected mentors are notified and attend a short onboarding session to align expectations.
+- Selected mentors list tasks for contributors to work on during the program.
+
+**Contributor Application Period — [May 10 - May 30]**
 
 - Contributors submit applications, selecting one or more project(s) of interest.
 - Program organizers begin reviewing contributor applications.
-- Applicants will receive an email confirming whether they’ve moved forward to the Contribution Period.
-- Rejection emails are also sent to applicants who aren’t selected.
-- Mentors’ task lists and requirements are shared with selected applicants.
 
-**Contribution Period — [August 8 - August 29]:**
+**Contributor Selection Period — [June 1 - 12]**
 
-- Approved applicants begin contributing to the selected projects.
-- Program organizers match applicants with mentors and share contribution guidelines.
-- Mentors host virtual onboarding calls to introduce applicants to the project and the AsyncAPI community.
-- Mentors help applicants set up development environments and guide their contributions.
-- Mentors provide feedback and request improvements as needed on contributions.
-- Applicants must submit a final project application summarizing their work by **August 25**.
-- Rejection emails are sent to applicants not moving forward to the mentorship cohort.
-- Contributions and final applications are due **August 25**
-
-**Mentee Selection Period — [August 30 - September 8 ]:**
-
-- Mentors evaluate contributions and final applications to select their mentee.
-- Program organizers review and approve all mentee selections.
-- Final selections are kept confidential until the public announcement.
-
-**Program Kickoff — [September 9 - September 16 ]:**
-
+- Contributors receive an email confirming the status of their application.
+- Rejection emails are sent to applicants who aren't selected.
+- Mentors' task lists and requirements are shared with selected contributors.
 - Public announcement of selected mentees.
+
+**Program Kickoff — [June 15]**
+
 - Mentees are added to project Slack channels and introduced to mentors and fellow cohort members.
 - Mentors and mentees align on weekly plans, goals, and expectations.
 - Cohort-wide welcome call and orientation hosted by program organizers.
 
-**Midterm Evaluations — [October 21 – 25]:**
+**Midterm Evaluations — [August 12 – 22]**
 
 - Mentors and mentees complete mid-program evaluation forms.
 - Program organizers host check-in calls with each team to assess progress and identify blockers.
 - Organizers review feedback to identify any blockers, support needs, or adjustments.
 - Contributors at risk of not completing the program are **flagged** for additional support.
 
- **Final Evaluations — [December 18–23]:**
+**Final Evaluations — [October 6 – 17]**
 
 - Mentors evaluate mentee contributions, growth, and engagement.
-- Mentees evaluate relationship, contribution, and impact of Mentor.
+- Mentees evaluate the relationship, contribution, and impact of their mentor.
 - Mentees complete self-assessments reflecting on their learning journey.
 - Mentors and mentees participate in final feedback sessions with program organizers.
 - Final project submissions are reviewed by program organizers.
 
-
-**Recognition — [January 6 - 10]:**
+**Recognition — [October 24]**
 
 - Successful mentees are recognized with digital certificates, community spotlight features, and letters of recommendation.
 - Guidance on next steps: maintainership invitations, community roles, etc.
 - A public blog post and social media highlights celebrate the cohort's achievements.
 
-**Post-Program Pathways:**
+**Post-Program Pathways — [Late October onwards]**
 
-- Invite mentees to stay involved: join working groups, continue contributing, or co-mentor next year.
-- Provide resources for maintainership, open-source leadership, and speaking opportunities at the AsyncAPI global conferences.
+- Mentees are invited to stay involved: join working groups, continue contributing, or co-mentor the next cohort.
+- Resources for maintainership, open-source leadership, and speaking opportunities at AsyncAPI global conferences are shared.
+
+> **Note:** This is the general program timeline. In cases where a project scope extends beyond the standard schedule, organizers can work with the relevant team on a flexible timeline.
 
 -----
 
