@@ -8538,46 +8538,6 @@ AsyncAPI Ambassador Program
 
 -----
 
-### https://www.asyncapi.com/docs/community/000-onboarding/docs-onboarding-checklist
-
----
-title: Docs Onboarding Checklist
-weight: 60
----
-## https://www.asyncapi.com/docs/community/000-onboarding/docs-onboarding-checklist AsyncAPI docs onboarding checklist
-
-As an open-source initiative with a global community, technical writer contributors should learn about our governance documents, documentation processes, and communication channels. 
-
-Complete in order the following onboarding tasks:
-
-- [ ] Read the [AsyncAPI Code of Conduct](https://github.com/asyncapi/.github/blob/master/CODE_OF_CONDUCT.md).
--  ] Read the [AsyncAPI Slack etiquette. 
-- [ ] Join [the AsyncAPI Slack workspace](https://asyncapi.com/slack-invite).
-- [ ] Add the AsyncAPI calendar found in [the AsyncAPI events page](https://www.asyncapi.com/community/events).
--  ] Read the list of [technical writer contributor responsibilities.
--  ] Read and familiarize yourself with the [prerequisite knowledge topics.
--  ] Familiarize yourself with the [AsyncAPI Style Guide.
-- [ ] Read all docs under the following content buckets: `Concepts`, `Tutorials`, `Reference`. (Take the time to go through each tutorial.)
--  ] Set up your local environment following our instructions for the [AsyncAPI git workflow.
-- [ ] Introduce yourself in AsyncAPI Slack in the `#01_introductions` channel and the `#13_docs` channel. Ask docs-related questions in #13_docs.
-- [ ] Request a good first docs issue in the [`#13_docs` Slack channel](https://asyncapi.com/slack-invite).
-- [ ] Attend [OPEN docs meetings](https://www.asyncapi.com/community/events) to chat with other maintainers, ask docs questions, and request help on docs blockers. 
-
------
-
-### https://www.asyncapi.com/docs/community/000-onboarding/documentarian-onboarding-guide
-
----
-title: Documentarian Onboarding Guide
-weight: 30
----
-
-🚧 This document is under construction.
-
-Please be patient as we work on it. Thank you. 🫶
-
------
-
 ### https://www.asyncapi.com/docs/community/000-onboarding/github-actions
 
 ---
@@ -8689,13 +8649,69 @@ Some workflows are applied automatically to all repositories. If you’d like to
 ### https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute
 
 ---
-title: How to Contribute
-weight: 20
+title: Contributing Guide
+weight: 10
 ---
 
-🚧 This document is under construction.
+## https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute Where to Contribute
 
-Please be patient as we work on it. Thank you. 🫶
+AsyncAPI offers multiple entry points for contributors depending on your interests and experience level. Whether you enjoy writing, coding, design, or community engagement, there is a place for you to contribute.
+
+### https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute Documentation
+
+Help improve the learning experience for others by contributing to documentation across AsyncAPI projects:
+
+* Guides and tutorials  
+* Glossary and conceptual documentation  
+* Onboarding and contributor documentation  
+* Blog posts and educational content
+
+👉 You can contribute using:
+
+* The AsyncAPI [website](https://github.com/asyncapi/website) and [community](https://github.com/asyncapi/community) repositories  
+* Documentation-related issues labelled `good first issue` or `docs`
+
+### https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute Core Projects
+
+Contribute to the development of tools that power the AsyncAPI ecosystem:
+
+* [AsyncAPI-React](https://github.com/asyncapi/asyncapi-react)
+* [Modelina](https://github.com/asyncapi/modelina)
+* [Generator](https://github.com/asyncapi/generator)
+* [Spec](https://github.com/asyncapi/spec)
+* [Website](https://github.com/asyncapi/website)
+
+👉 You can contribute by:
+
+* Commenting on or raising issues labeled `feature`, `enhancement`, or `good first issue`  
+* Making the frontend of the website more accessible   
+* Planning the designs for the website   
+* Writing unit tests 
+
+### https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute Community & Ecosystem
+
+Support and grow the AsyncAPI community beyond code:
+
+* Answering questions in the community Slack or GitHub Discussions  
+* Reviewing pull requests  
+* Helping triage issues  
+* Participating in working groups or initiatives
+
+👉 You can contribute by:
+
+* Participating in GitHub Discussions in the AsyncAPI repository you're interested in 
+* Joining the [AsyncAPI Slack](https://asyncapi.com/slack-invite)  
+* [Joining the community](https://github.com/asyncapi/community) and attending [our meetings](https://calendar.google.com/calendar/u/0?cid=Y19xOXRzZWlnbG9tZHNqNm5qdWh2YnB0czExY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
+
+## https://www.asyncapi.com/docs/community/000-onboarding/how-to-contribute How to Contribute
+
+Not sure where to start? Here are some tips:
+
+* If you enjoy writing, start with **Documentation**  
+* If you enjoy coding, explore **Core Projects**  
+* If you enjoy helping others, join **Community & Ecosystem** efforts
+
+Check out the [Types of Contributions](https://www.asyncapi.com/docs/community/010-contribution-guidelines/contribution-flow) section for more ideas.
 
 -----
 
@@ -8799,6 +8815,47 @@ For a comprehensive guide on how to create a fork and start contributing, refer 
 
 -----
 
+### https://www.asyncapi.com/docs/community/000-onboarding/technical-writer-onboarding-guide
+
+---
+title: Technical Writer Onboarding Guide
+weight: 30
+---
+
+Welcome to the AsyncAPI Technical Writer Onboarding Guide!
+
+This document aims to provide comprehensive guidelines about everything you need to know to begin your journey as a technical writer within the AsyncAPI ecosystem. 
+
+## https://www.asyncapi.com/docs/community/000-onboarding/technical-writer-onboarding-guide What Does a Technical Writer Do?
+
+In the community, technical writers collaborate with other technical writers, Subject Matter Experts (SME), designers, engineers, and core maintainers in doing the following:
+
+* Create quality, easy-to-use, clear, and accurate documentation for all audience levels.  
+* Collaborate with other contributors to propose, create, and maintain documentation.  
+* Support fellow technical writers and community members.  
+* Engage in documentation review processes and incorporate feedback.  
+* Join documentation community meetings/streams to connect with the community.  
+  
+
+
+## https://www.asyncapi.com/docs/community/000-onboarding/technical-writer-onboarding-guide Getting Started
+
+Before you start contributing, complete the following onboarding tasks in order:
+
+- [ ] Read the [AsyncAPI Code of Conduct](https://github.com/asyncapi/.github/blob/master/CODE_OF_CONDUCT.md).  
+- [ ] Read the [AsyncAPI Slack etiquette](http://../060-meetings-and-communication/slack-etiquette).  
+- [ ] Join [the AsyncAPI Slack workspace](https://asyncapi.com/slack-invite).  
+- [ ] Add the AsyncAPI calendar found in [the AsyncAPI events page](https://www.asyncapi.com/community/events).  
+- [ ] Read and familiarize yourself with the [prerequisite knowledge topics](http://../010-contribution-guidelines/prerequisite-knowledge).  
+- [ ] Familiarize yourself with the [AsyncAPI Style Guide](http://../011-styleguide).  
+- [ ] Read all docs under the following content buckets: `Concepts`, `Tutorials`, `Reference`. (Take the time to go through each tutorial.)  
+- [ ] Set up your local environment following our instructions for the [AsyncAPI git workflow](http://../010-contribution-guidelines/git-workflow).  
+- [ ] Introduce yourself in AsyncAPI Slack in the `#01_introductions` channel and the `#13_docs` channel. From there, ask docs-related questions.  
+- [ ] Request a good first docs issue in the [`#13_docs` Slack channel](https://asyncapi.com/slack-invite).  
+- [ ] Attend [OPEN docs meetings](https://www.asyncapi.com/community/events) to chat with other maintainers, ask docs questions, and request help on docs blockers.
+
+-----
+
 ### https://www.asyncapi.com/docs/community/000-onboarding/upholding-code-of-conduct
 
 ---
@@ -8869,16 +8926,84 @@ The Code of Conduct Committee is trained to resolve conflicts fairly and ensure 
 
 -----
 
-### https://www.asyncapi.com/docs/community/000-onboarding/where-to-contribute
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM
 
 ---
-title: Where to Contribute
-weight: 10
+title: AsyncAPI Ambassador Program
+weight: 180
 ---
 
-🚧 This document is under construction.
+This document covers the organizational and operational aspects of the AsyncAPI Ambassador Program.
 
-Please be patient as we work on it. Thank you. 🫶
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM What is the AsyncAPI Ambassador Program?
+
+The AsyncAPI Ambassador Program aims to bring AsyncAPI closer to both current users and potential new project users. It also aims to provide users and community members with the necessary tools and resources to:
+
+- Promote user cooperation and disseminate the necessary tools to any specific user.
+- Engage with the project in some way, either as a contributor, blogger, speaker, etc.
+- Speak at community events or write technical content (i.e., blog posts) that solves community needs.
+- Nurture community growth and a welcoming environment to spread knowledge about the project.
+
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM How does the program work?
+
+- The ambassador selection process will be as transparent as possible.
+- The model currently in place for adding members to the Technical Steering Committee through PR will be used.
+- The TSC or delegated maintainers of community repositories will evaluate applications according to compliance requirements via a traditional PR flow.
+- All ambassador information will be displayed on the AsyncAPI website in a list after the PR is merged.
+- The program has the team tag `@asyncapi/ambassadors` to notify ambassadors on GitHub.
+
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM Ambassador requirements
+
+The participation will be determined and checked annually. The minimum requirement for being an ambassador is to make **4 contributions per year** in the form of articles, talks, videos, podcasts, presentations, driving initiatives, etc.
+
+Ambassadors can be invited to review content (i.e., articles, talks, videos) related to the community. These reviews are optional and will be counted as an additional contribution.
+
+Some clarifications on the type of contributions:
+    
+- Articles, videos, and podcasts can be published on [asyncapi.com/blog](https://www.asyncapi.com/blog) or other domains. 
+- Talks and presentations can be displayed at different events or workshops. Within it, AsyncAPI should appear at the core of the presentation. The presentation would never be used as a disguised marketing tool for other products/projects.
+- Special contributions should be driven to support the community or enhance its visibility (i.e., getting new sponsors or driving initiatives) 
+- If we did not identify the contributions, just let us know.
+         
+Examples: 
+
+1. If contributors publish 3 articles and propel 1 initiative about AsyncAPI in eight months, they will become ambassadors for the whole year.
+2. If contributors make 1 presentation, write 2 articles, and propel 1 initiative, they will become ambassadors for the whole year.
+3. If you were accepted as ambassador on the 5th of May 2022, you have already fulfilled the requirements. On the 5th of May 2023, we will check if you qualify again after the 5th of May 2022.
+   
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM Ambassadors duties
+
+- Be in tune with AsyncAPI's mission and values.
+- Always respect the [code of conduct](https://github.com/asyncapi/.github/blob/master/CODE_OF_CONDUCT.md).
+- Be active in your role as an ambassador.
+
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM Ambassador benefits
+
+- Invitation to [AsyncAPI Initiative organization](https://github.com/orgs/asyncapi/people).
+- Receive a special swag pack for Ambassadors (valued at $150 approx., including shipping cost).
+- Receive swag for conference or workshop participants (valued at $70 approx., including shipping cost).
+- Free entry to AsyncAPI conferences.
+- Community-wide recognition.
+- All our respects for your contribution!
+
+### https://www.asyncapi.com/docs/community/010-contribution-guidelines/AMBASSADOR_PROGRAM Become an AsyncAPI Ambassador
+
+The process of becoming an ambassador is very simple. Go to the **community** repository and open a PR to edit the `AMBASSADORS_MEMBERS.yaml` file. The TSC will then evaluate your candidacy!
+
+> **The process of obtaining the GitHub ID number**
+> - The Ambassador Candidate adds their GitHub handle to `https://api.github.com/users/` to form link similar to https://api.github.com/users/derberg and puts into the browser's address bar.
+> - Presses Enter.
+> - The API returns a JSON object in which property `id` equals a number (in the case of the example, the number is `6995927`). This is the number that the Ambassador Candidate needs to insert as the value of the property `githubID` in the `AMBASSADORS_MEMBERS.yaml` file.
+
+> **The process of obtaining the Slack ID number**
+> - The Ambassador Candidate finds themselves in the members list of the Slack channel `02_general`.
+> - Presses on their handle.
+> - In the opened `Profile` window, presses the button with three dots.
+> - Chooses the option `Copy member ID`. This is the sequence of characters that the Ambassador Candidate needs to insert as the value of the property `slack` in the `AMBASSADORS_MEMBERS.yaml` file.
+
+That PR doesn't have to be created by the ambassador candidate; any community member may open a PR to submit someone's application to the AsyncAPI Ambassador Program. 
+
+Get on board and become an ambassador!
 
 -----
 
@@ -9099,7 +9224,7 @@ Contrary to popular belief, **contributions are not limited to code**. At AsyncA
 
 ### https://www.asyncapi.com/docs/community/010-contribution-guidelines/contribution-flow Before Making a Contribution
 - Read the onboarding contributor guide.
-- If you are contributing to the community repository, review the documentation onboarding checklist. 
+- If you are contributing to the community repository, review the technical writer onboarding guide. 
 - For other repositories, refer to the [general contribution guidelines](https://github.com/asyncapi/community/blob/master/CONTRIBUTING.md).
 - Look through existing issues and pull requests to understand the repository better.
 - Check the [general roadmap](https://www.asyncapi.com/roadmap).
@@ -9646,7 +9771,7 @@ Keep these best practices in mind as you mentor and lead:
 
 ---
 title: AsyncAPI Microgrant Program
-weight: 160
+weight: 170
 ---
 
 # https://www.asyncapi.com/docs/community/010-contribution-guidelines/microgrant-program AsyncAPI Microgrant Program
@@ -10037,7 +10162,7 @@ For example:
 
 ---
 title: 'Recognizing Contributors & Appointing New Maintainers'
-weight: 170
+weight: 160
 ---
 
 AsyncAPI thrives on the passion, ideas, and time of its contributors. From reviewing PRs to improving documentation and hosting community calls, every contribution boosts our growth. This document outlines our process for recognizing contributors and appointing new maintainers across AsyncAPI projects.
@@ -11755,87 +11880,6 @@ Here are a few key elements of writing AsyncAPI's voice:
 
 -----
 
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM
-
----
-title: AsyncAPI Ambassador Program
-weight: 20
----
-
-This document covers the organizational and operational aspects of the AsyncAPI Ambassador Program.
-
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM What is the AsyncAPI Ambassador Program?
-
-The AsyncAPI Ambassador Program aims to bring AsyncAPI closer to both current users and potential new project users. It also aims to provide users and community members with the necessary tools and resources to:
-
-- Promote user cooperation and disseminate the necessary tools to any specific user.
-- Engage with the project in some way, either as a contributor, blogger, speaker, etc.
-- Speak at community events or write technical content (i.e., blog posts) that solves community needs.
-- Nurture community growth and a welcoming environment to spread knowledge about the project.
-
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM How does the program work?
-
-- The ambassador selection process will be as transparent as possible.
-- The model currently in place for adding members to the Technical Steering Committee through PR will be used.
-- The TSC or delegated maintainers of community repositories will evaluate applications according to compliance requirements via a traditional PR flow.
-- All ambassador information will be displayed on the AsyncAPI website in a list after the PR is merged.
-- The program has the team tag `@asyncapi/ambassadors` to notify ambassadors on GitHub.
-
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM Ambassador requirements
-
-The participation will be determined and checked annually. The minimum requirement for being an ambassador is to make **4 contributions per year** in the form of articles, talks, videos, podcasts, presentations, driving initiatives, etc.
-
-Ambassadors can be invited to review content (i.e., articles, talks, videos) related to the community. These reviews are optional and will be counted as an additional contribution.
-
-Some clarifications on the type of contributions:
-    
-- Articles, videos, and podcasts can be published on [asyncapi.com/blog](https://www.asyncapi.com/blog) or other domains. 
-- Talks and presentations can be displayed at different events or workshops. Within it, AsyncAPI should appear at the core of the presentation. The presentation would never be used as a disguised marketing tool for other products/projects.
-- Special contributions should be driven to support the community or enhance its visibility (i.e., getting new sponsors or driving initiatives) 
-- If we did not identify the contributions, just let us know.
-         
-Examples: 
-
-1. If contributors publish 3 articles and propel 1 initiative about AsyncAPI in eight months, they will become ambassadors for the whole year.
-2. If contributors make 1 presentation, write 2 articles, and propel 1 initiative, they will become ambassadors for the whole year.
-3. If you were accepted as ambassador on the 5th of May 2022, you have already fulfilled the requirements. On the 5th of May 2023, we will check if you qualify again after the 5th of May 2022.
-   
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM Ambassadors duties
-
-- Be in tune with AsyncAPI's mission and values.
-- Always respect the [code of conduct](https://github.com/asyncapi/.github/blob/master/CODE_OF_CONDUCT.md).
-- Be active in your role as an ambassador.
-
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM Ambassador benefits
-
-- Invitation to [AsyncAPI Initiative organization](https://github.com/orgs/asyncapi/people).
-- Receive a special swag pack for Ambassadors (valued at $150 approx., including shipping cost).
-- Receive swag for conference or workshop participants (valued at $70 approx., including shipping cost).
-- Free entry to AsyncAPI conferences.
-- Community-wide recognition.
-- All our respects for your contribution!
-
-### https://www.asyncapi.com/docs/community/020-governance-and-policies/AMBASSADOR_PROGRAM Become an AsyncAPI Ambassador
-
-The process of becoming an ambassador is very simple. Go to the **community** repository and open a PR to edit the `AMBASSADORS_MEMBERS.yaml` file. The TSC will then evaluate your candidacy!
-
-> **The process of obtaining the GitHub ID number**
-> - The Ambassador Candidate adds their GitHub handle to `https://api.github.com/users/` to form link similar to https://api.github.com/users/derberg and puts into the browser's address bar.
-> - Presses Enter.
-> - The API returns a JSON object in which property `id` equals a number (in the case of the example, the number is `6995927`). This is the number that the Ambassador Candidate needs to insert as the value of the property `githubID` in the `AMBASSADORS_MEMBERS.yaml` file.
-
-> **The process of obtaining the Slack ID number**
-> - The Ambassador Candidate finds themselves in the members list of the Slack channel `02_general`.
-> - Presses on their handle.
-> - In the opened `Profile` window, presses the button with three dots.
-> - Chooses the option `Copy member ID`. This is the sequence of characters that the Ambassador Candidate needs to insert as the value of the property `slack` in the `AMBASSADORS_MEMBERS.yaml` file.
-
-That PR doesn't have to be created by the ambassador candidate; any community member may open a PR to submit someone's application to the AsyncAPI Ambassador Program. 
-
-Get on board and become an ambassador!
-
------
-
 ### https://www.asyncapi.com/docs/community/020-governance-and-policies/CHARTER
 
 ---
@@ -12774,6 +12818,123 @@ sequenceDiagram
     Maintainers-->>+Specification: Publish Release
     Release Coordinator ->>+ Community: Notify Community about new release
 ```
+
+-----
+
+### https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy
+
+---
+title: Program Lead Policy
+weight: 26
+---
+
+The document defines the process for appointing, evaluating, and renewing individuals whom we hire through Open Collective contracts or pay for a specific job to be done in one of our official programs at AsyncAPI. You can learn more [about them in the list of people and assets in the AsyncAPI doc](https://www.asyncapi.com/docs/community/020-governance-and-policies/initiative-inventory#amazing-humans).
+
+The goal of this policy is to ensure alignment, transparency, accountability, and measurable impact from funded roles within the project. 
+
+
+> Volunteer roles and maintainership are not governed by this policy.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Appointment
+Paid initiative or program lead roles may be created when the Governance Board identifies a need for dedicated leadership to achieve specific strategic objectives.
+
+Each role must have:
+
+- A clearly defined scope
+- Expected deliverables
+- Defined duration
+- Approved budget
+
+Tenures are typically for **twelve calendar months** from appointment date.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Selection Process
+When a role is opened, the Governance Board must conduct a selection process that includes:
+
+1. Publishing a public issue or discussion for a call for candidates.
+2. Collecting applications or nominations.
+3. Evaluating candidates using predefined criteria.
+4. Selecting the candidate through the Governance Board's decision.
+
+### https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Eligibility
+- Priority is given to members of the AsyncAPI Technical Steering Committee (TSC) and Maintainers.
+- Individuals with unresolved Code of Conduct violations or conduct issues are not eligible.
+
+
+### https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Evaluation Criteria
+Candidates may be evaluated using a scoring framework such as:
+
+| Criteria | Points |
+| :--- | :--- |
+| Member of the Technical Steering Committee | 30% |
+| Relevant experience performing similar work | 20% |
+| Past contributions to AsyncAPI (code, documentation, community leadership)| 30% |
+| Prior leadership or community involvement (Experience leading teams, initiatives, or communities) | 10% |
+| Communication & collaboration ability (Ability to work with contributors and maintainers) | 10% |
+
+The final score is **out of 100**. Selection decisions should be guided by this weighted score alongside Governance Board discussion.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Responsibilities
+Initiative and Program Leads are responsible for:
+
+- Leading the initiative or program according to its defined scope
+- Coordinating contributors and community members
+- Delivering agreed objectives and milestones
+- Maintaining transparency in progress and outcomes
+
+Leads must ensure that work is conducted openly and aligned with the project’s governance and community standards.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Reporting Requirements
+To maintain transparency and community awareness, initiative leads must provide regular updates.
+
+### https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Progress Updates
+Leads are expected to publish regular written updates, such as:
+
+- Monthly or quarterly blog posts.
+- Community updates summarizing progress on Community WG meetings.
+- Key achievements and challenges.
+
+These updates should communicate:
+
+- Work completed
+- Current status
+- Upcoming priorities
+- Community opportunities to contribute
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Annual Report
+At the end of the Tenure, the lead must submit an **annual report** summarizing:
+
+- Achievements and deliverables
+- Impact and outcomes
+- Lessons learned
+- Recommendations for the future
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Review Process
+The Governance Board conducts a performance and objectives review **in the first week of every six months**. Reviews assess:
+
+- Progress of agreed objectives
+- Quality and consistency of reporting
+- Impact on the project or community
+- Collaboration with maintainers and contributors
+- Alignment with project values, community goals, and conduct standards
+
+The Governance Board is entitled to perform any additional reviews at any time.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Evaluation and Renewal
+Appointments are **not automatically renewed**. Renewal and appointment review begin **three months before the end of the tenure**. Final performance reviews and compensation adjustments are conducted **two to one month before the end of the tenure**.
+
+Following this, the Governance Board may decide to:
+
+- Renew the appointment for another term.
+- Renew with revised scope or expectations.
+- Conclude the engagement
+
+All decisions must be documented and communicated transparently.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Conflict of Interest
+Members involved in the selection or renewal process must disclose any conflicts of interest and recuse themselves when appropriate.
+
+## https://www.asyncapi.com/docs/community/020-governance-and-policies/program-lead-policy Amendments
+This policy may be amended by the Governance Board as the project's needs evolve.
 
 -----
 
@@ -36337,14 +36498,16 @@ components:
 1. Create a new directory for your template named **python-mqtt-client-template**.
 2. Install the AsyncAPI CLI using the command `npm install -g @asyncapi/cli`.
 3. Create a new folder **test/fixtures** with a file named **asyncapi.yml** in your fixtures directory. This file is used to define the **structure** of your template. You can copy the above example and paste it in your **asyncapi.yml** document.
-4. Create a new file named **package.json** in your **python-mqtt-client-template** directory. This file is used to define the **dependencies** for your template.
+4. Create a new file named **package.json** in your **python-mqtt-client-template** directory. This file is used to define the **dependencies** for your template. Make sure to include `@asyncapi/generator` alongside your other dependencies here.
 5. Create a new folder **python-mqtt-client-template/template**. Create a new file named **index.js** in your **template** directory. This file is used to define the **logic** for your template.
-6. Create a **test.py** file to validate the logic of your application. Don't worry about this file for now. The tutorial will tell you how to create it later.
-
+6. Navigate into your template directory and run a single installation command to install all defined dependencies locally (this is required for the CLI to execute template commands):
+   ```bash
+   cd python-mqtt-client-template
+   npm install
 Now your directory should look like this:
 
-```
-python-mqtt-client-template 
+```text
+python-mqtt-client-template
 ├── template
 │   └── index.js
 ├── test
@@ -36534,6 +36697,12 @@ New temperature detected 72955029 sent to temperature/changed
 ```
 
 To make sure your **test.py** and client code works check if the broker really receives temperature-related messages. You can do it using an [MQTT CLI](https://hivemq.github.io/mqtt-cli/) using docker. Run the command `docker run hivemq/mqtt-cli sub -t temperature/changed -h test.mosquitto.org` in your terminal. It will download the image if you don't have it locally, then the CLI will connect to the broker, subscribe to the `temperature/changed` topic and then output the temperature ids on the terminal.
+
+> For testing against a local Docker broker, route to the host machine:
+
+```bash
+docker run hivemq/mqtt-cli sub -t temperature/changed -h host.docker.internal
+```
 
 ### https://www.asyncapi.com/docs/tools/generator/generator-template 3. Update the template with client code
 
@@ -37045,9 +37214,10 @@ The AsyncAPI generator is a tool that generates anything you want using the **As
 > If your primary objective is to generate models/classes for your event-driven architecture apps, use AsyncAPI Modelina (link removed: /docs/tools/generator/model-generation), which is supported in the AsyncAPI CLI, instead of using the AsyncAPI Generator. Modelina is specifically designed for model generation and provides utilities for working with the AsyncAPI document.
 
 ### https://www.asyncapi.com/docs/tools/generator Generator use cases
-- Generation of interactive and understandable API documentation
-- Generation of APIs' client libraries
-- Generation of APIs' boilerplate code
+- **Generation of API documentation** - Transforms an AsyncAPI document into a human-readable website or Markdown where developers can visualize channels, operations, messages, and payload schemas, instead of reading the raw YAML/JSON definition.
+- **Generation of APIs' client libraries (SDKs)** - Produces ready-to-use code packages for API consumers that abstract away the protocol/networking logic (connecting, subscribing, and publishing over Kafka, WebSocket, MQTT, and more), so developers interact with the API by calling functions rather than writing raw connection code.
+- **Generation of APIs' boilerplate code** - Scaffolds the project skeleton for API providers: server configuration, directory structure, and connection logic, plus stub handler files, so you can skip the setup and focus immediately on business logic.
+- **And anything else you can template** - The use cases above are just the popular ones. Because the output is driven entirely by the template, you can generate whatever your AsyncAPI document can describe: usage examples, test cases, Helm charts, config files, diagrams, and more.
 
 ### https://www.asyncapi.com/docs/tools/generator Generator advantages
 - Quick to setup and easy to use on a regular basis
